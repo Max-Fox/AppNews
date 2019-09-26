@@ -11,6 +11,7 @@ import Foundation
 class ParserNewsGazeta: NSObject, XMLParserDelegate {
     var arrayNews: [New] = []
     var currentNew: New?
+    var currentCharacters: String = ""
     
     //Когда находит открывающийся тег
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
@@ -23,12 +24,15 @@ class ParserNewsGazeta: NSObject, XMLParserDelegate {
                 currentNew?.image = currentUrlImage
             }
         }
+        if elementName == "description" {
+            currentNew?.description = currentCharacters
+        }
     }
-    
+ 
     //Символы между тегами
-    var currentCharacters: String = ""
     func parser(_ parser: XMLParser, foundCharacters string: String){
-        currentCharacters = string
+        currentCharacters += string.replacingOccurrences(of: "\n", with: "")
+        print(currentCharacters)
     }
     
     //Когда находит закрывающийся тег
@@ -51,5 +55,7 @@ class ParserNewsGazeta: NSObject, XMLParserDelegate {
         if elementName == "item" {
             arrayNews.append(currentNew!)
         }
+        
+        currentCharacters = ""
     }
 }

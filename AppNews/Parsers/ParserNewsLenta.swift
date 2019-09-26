@@ -11,21 +11,9 @@ import Foundation
 class ParserNewsLenta: NSObject, XMLParserDelegate {
     var arrayNews: [New] = []
     var currentNew: New?
-    
-    /*
-     <item>
-     <guid>https://lenta.ru/news/2019/09/26/gela/</guid>
-     <title>В Белоруссии лидера воров в законе впервые освободили по амнистии</title>
-     <link>https://lenta.ru/news/2019/09/26/gela/</link>
-     <description>
-     <![CDATA[Лидер мингрельского воровского клана, 45-летний Гела Кардава, известный в криминальных кругах как Гела Гальский, вошел в число двух тысяч образцовых заключенных, освобожденных по амнистии к 75-летию освобождения Белоруссии от немецко-фашистских захватчиков. Кардаве оставалось отбыть 16 месяцев лишения свободы.]]>
-     </description>
-     <pubDate>Thu, 26 Sep 2019 11:05:21 +0300</pubDate>
-     <enclosure url="https://icdn.lenta.ru/images/2019/09/26/11/20190926110334907/pic_eed3ff1b89cd37aabd4faa344b280d23.jpg" type="image/jpeg" length="52142"/>
-     <category>Силовые структуры</category>
-     </item>
-    */
-    
+    var currentDescription: String = ""
+  
+
     //Когда находит открывающийся тег
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if elementName == "item" {
@@ -38,7 +26,10 @@ class ParserNewsLenta: NSObject, XMLParserDelegate {
             }
         }
     }
-    
+    func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
+        let description = String(data: CDATABlock, encoding: .utf8)
+        currentDescription = description ?? ""
+    }
     //Символы между тегами
     var currentCharacters: String = ""
     func parser(_ parser: XMLParser, foundCharacters string: String){
@@ -60,9 +51,10 @@ class ParserNewsLenta: NSObject, XMLParserDelegate {
             currentNew?.pubDate = currentCharacters
         }
         if elementName == "description" {
-            currentNew?.description = currentCharacters
+            currentNew?.description = currentDescription
         }
         if elementName == "item" {
+            currentNew?.autor = "Lenta.ru"
             arrayNews.append(currentNew!)
         }
     }
