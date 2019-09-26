@@ -10,12 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let receiver = NewsReceiver()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let news = parserNewsGazeta()
-        //let news2 = parserNewsLenta()
-        
+        let news = receiver.getNews()
     }
 
 

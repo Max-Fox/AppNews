@@ -1,5 +1,5 @@
 //
-//  NewsReceiverGazeta.swift
+//  NewsReceiverLenta.swift
 //  AppNews
 //
 //  Created by Максим Лисица on 26/09/2019.
@@ -8,10 +8,9 @@
 
 import Foundation
 
-class NewsReceiverGazeta: NewsReceiverProtocol {
+class NewsReceiverLenta: NewsReceiverProtocol {
     func obtainNews() -> [New] {
-        let news = parserNewsGazeta()
+        let news = parserNewsLenta()
         return news
     }
-    
 }

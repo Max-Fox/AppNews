@@ -19,6 +19,8 @@
 		3FC38421233CE61700D99E75 /* NewsReceiverGazeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC38420233CE61700D99E75 /* NewsReceiverGazeta.swift */; };
 		3FC38423233CE6E800D99E75 /* ParserNewsGazeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC38422233CE6E800D99E75 /* ParserNewsGazeta.swift */; };
 		3FC38427233CED5100D99E75 /* ParserNewsLenta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC38426233CED5100D99E75 /* ParserNewsLenta.swift */; };
+		3FD0E222233D313E003BE23C /* NewsReceiverLenta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E221233D313E003BE23C /* NewsReceiverLenta.swift */; };
+		3FD0E224233D31D2003BE23C /* NewsReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E223233D31D2003BE23C /* NewsReceiver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		3FC38420233CE61700D99E75 /* NewsReceiverGazeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsReceiverGazeta.swift; sourceTree = "<group>"; };
 		3FC38422233CE6E800D99E75 /* ParserNewsGazeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserNewsGazeta.swift; sourceTree = "<group>"; };
 		3FC38426233CED5100D99E75 /* ParserNewsLenta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserNewsLenta.swift; sourceTree = "<group>"; };
+		3FD0E221233D313E003BE23C /* NewsReceiverLenta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsReceiverLenta.swift; sourceTree = "<group>"; };
+		3FD0E223233D31D2003BE23C /* NewsReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsReceiver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				3FC38420233CE61700D99E75 /* NewsReceiverGazeta.swift */,
+				3FD0E221233D313E003BE23C /* NewsReceiverLenta.swift */,
+				3FD0E223233D31D2003BE23C /* NewsReceiver.swift */,
 			);
 			path = Receivers;
 			sourceTree = "<group>";
@@ -188,10 +194,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD0E224233D31D2003BE23C /* NewsReceiver.swift in Sources */,
 				3FC38427233CED5100D99E75 /* ParserNewsLenta.swift in Sources */,
 				3FC38418233CE41400D99E75 /* Parsers.swift in Sources */,
 				3FC38421233CE61700D99E75 /* NewsReceiverGazeta.swift in Sources */,
 				3FC3841B233CE44D00D99E75 /* New.swift in Sources */,
+				3FD0E222233D313E003BE23C /* NewsReceiverLenta.swift in Sources */,
 				3FC3840B233CE3E300D99E75 /* AppNews.xcdatamodeld in Sources */,
 				3FC38405233CE3E300D99E75 /* ViewController.swift in Sources */,
 				3FC3841E233CE48900D99E75 /* NewsReceiverProtocol.swift in Sources */,

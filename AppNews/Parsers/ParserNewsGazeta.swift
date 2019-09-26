@@ -32,7 +32,6 @@ class ParserNewsGazeta: NSObject, XMLParserDelegate {
     //Символы между тегами
     func parser(_ parser: XMLParser, foundCharacters string: String){
         currentCharacters += string.replacingOccurrences(of: "\n", with: "")
-        print(currentCharacters)
     }
     
     //Когда находит закрывающийся тег
