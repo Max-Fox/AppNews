@@ -32,7 +32,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="EqY-Db-grd"/>
+                    <navigationItem key="navigationItem" id="EqY-Db-grd">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="icons8-settings" id="CUt-nx-Ldm">
+                            <connections>
+                                <segue destination="Oy1-Lb-vly" kind="show" id="FHt-UD-cd1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="newsTableView" destination="jxS-QY-Qsf" id="qBF-oX-CoX"/>
                     </connections>
@@ -40,6 +46,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1082.608695652174" y="-563.16964285714278"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="RkW-rL-CTh">
+            <objects>
+                <viewController id="Oy1-Lb-vly" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hWe-xP-Uzk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dbZ-AJ-QKL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k6M-6t-8Jp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2213" y="-566"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bWW-5d-9bK">
@@ -60,4 +81,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="-563.16964285714278"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-settings" width="25" height="25"/>
+    </resources>
 </document>

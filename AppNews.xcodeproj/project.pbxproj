@@ -23,6 +23,7 @@
 		3FD0E224233D31D2003BE23C /* NewsReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E223233D31D2003BE23C /* NewsReceiver.swift */; };
 		3FD0E227233D4DE1003BE23C /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */; };
 		3FD0E228233D4DE1003BE23C /* NewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */; };
+		3FD0E22A233E0A9A003BE23C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E229233E0A9A003BE23C /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		3FD0E223233D31D2003BE23C /* NewsReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsReceiver.swift; sourceTree = "<group>"; };
 		3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
 		3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTableViewCell.xib; sourceTree = "<group>"; };
+		3FD0E229233E0A9A003BE23C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F700E6E233E0B8D006BCBD5 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */,
+				3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */,
+				3FC38404233CE3E300D99E75 /* ViewController.swift */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		3F700E6F233E0B97006BCBD5 /* SettingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3FD0E229233E0A9A003BE23C /* SettingsViewController.swift */,
+			);
+			path = SettingViewController;
+			sourceTree = "<group>";
+		};
 		3FC383F6233CE3E300D99E75 = {
 			isa = PBXGroup;
 			children = (
@@ -76,19 +96,17 @@
 		3FC38401233CE3E300D99E75 /* AppNews */ = {
 			isa = PBXGroup;
 			children = (
+				3FD0E22B233E0A9F003BE23C /* ViewControllers */,
 				3FC38425233CED2B00D99E75 /* Parsers */,
 				3FC38424233CEB6000D99E75 /* Receivers */,
 				3FC3841C233CE46500D99E75 /* Protocols */,
 				3FC38419233CE43E00D99E75 /* Model */,
 				3FC38402233CE3E300D99E75 /* AppDelegate.swift */,
-				3FC38404233CE3E300D99E75 /* ViewController.swift */,
 				3FC38406233CE3E300D99E75 /* Main.storyboard */,
 				3FC3840C233CE3E500D99E75 /* Assets.xcassets */,
 				3FC3840E233CE3E500D99E75 /* LaunchScreen.storyboard */,
 				3FC38411233CE3E500D99E75 /* Info.plist */,
 				3FC38409233CE3E300D99E75 /* AppNews.xcdatamodeld */,
-				3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */,
-				3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */,
 			);
 			path = AppNews;
 			sourceTree = "<group>";
@@ -127,6 +145,15 @@
 				3FC38426233CED5100D99E75 /* ParserNewsLenta.swift */,
 			);
 			path = Parsers;
+			sourceTree = "<group>";
+		};
+		3FD0E22B233E0A9F003BE23C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3F700E6F233E0B97006BCBD5 /* SettingViewController */,
+				3F700E6E233E0B8D006BCBD5 /* MainViewController */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +238,7 @@
 				3FC3840B233CE3E300D99E75 /* AppNews.xcdatamodeld in Sources */,
 				3FC38405233CE3E300D99E75 /* ViewController.swift in Sources */,
 				3FC3841E233CE48900D99E75 /* NewsReceiverProtocol.swift in Sources */,
+				3FD0E22A233E0A9A003BE23C /* SettingsViewController.swift in Sources */,
 				3FC38403233CE3E300D99E75 /* AppDelegate.swift in Sources */,
 				3FC38423233CE6E800D99E75 /* ParserNewsGazeta.swift in Sources */,
 			);

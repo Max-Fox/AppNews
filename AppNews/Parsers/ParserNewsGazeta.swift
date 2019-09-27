@@ -37,7 +37,7 @@ class ParserNewsGazeta: NSObject, XMLParserDelegate {
     //Когда находит закрывающийся тег
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
         if elementName == "title" {
-            currentNew?.title = currentCharacters
+            currentNew?.title = currentCharacters.trimmingCharacters(in: .whitespacesAndNewlines)
         }
         if elementName == "link" {
             currentNew?.link = currentCharacters

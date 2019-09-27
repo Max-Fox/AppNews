@@ -13,10 +13,10 @@ class NewTableViewCell: UITableViewCell {
     @IBOutlet weak var imageViewNew: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var discriptionLabel: UILabel!
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        self.imageViewNew.contentMode = .scaleToFill
+        self.imageViewNew.contentMode = .scaleAspectFill
     }
 }
