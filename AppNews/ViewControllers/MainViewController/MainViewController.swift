@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     @IBOutlet weak var newsTableView: UITableView!
     
@@ -34,6 +34,8 @@ class ViewController: UIViewController {
         newsTableView.delegate = self
         newsTableView.dataSource = self
         newsTableView.refreshControl = myRefreshControl
+        
+        withDetail = UserDefaults.standard.value(forKey: "withDetail") as? Bool ?? false
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
@@ -51,9 +53,16 @@ class ViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "settingSeque" {
+            let settingVC = segue.destination as! SettingTableViewController
+            settingVC.delegate = self
+        }
+    }
+    
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nowCurrentNews
     }
@@ -73,18 +82,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.discriptionLabel.text = ""
         }
-        
-        guard let urlString = news?[indexPath.row].image, let url = URL(string: urlString) else { return cell }
-        
-        do {
-            cell.imageViewNew.image = UIImage(data: try Data(contentsOf: url))
-        } catch let error {
-            print(error.localizedDescription)
-        }
+        cell.imageStringUrl = news?[indexPath.row].image
         
         return cell
     }
     
+}
+
+extension MainViewController: SettingsProtocol {
+    func didPressSwitchIsDetailNews(isOn: Bool) {
+        UserDefaults.standard.set(isOn, forKey: "withDetail")
+        withDetail = isOn
+        self.newsTableView.reloadData()
+    }
 }
 
 

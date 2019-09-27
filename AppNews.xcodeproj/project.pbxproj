@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F700E71233E0E7F006BCBD5 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F700E70233E0E7F006BCBD5 /* SettingTableViewController.swift */; };
+		3F700E73233E44EB006BCBD5 /* SettingsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F700E72233E44EB006BCBD5 /* SettingsProtocol.swift */; };
 		3FC38403233CE3E300D99E75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC38402233CE3E300D99E75 /* AppDelegate.swift */; };
-		3FC38405233CE3E300D99E75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC38404233CE3E300D99E75 /* ViewController.swift */; };
+		3FC38405233CE3E300D99E75 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC38404233CE3E300D99E75 /* MainViewController.swift */; };
 		3FC38408233CE3E300D99E75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FC38406233CE3E300D99E75 /* Main.storyboard */; };
 		3FC3840B233CE3E300D99E75 /* AppNews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FC38409233CE3E300D99E75 /* AppNews.xcdatamodeld */; };
 		3FC3840D233CE3E500D99E75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FC3840C233CE3E500D99E75 /* Assets.xcassets */; };
@@ -23,13 +25,14 @@
 		3FD0E224233D31D2003BE23C /* NewsReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E223233D31D2003BE23C /* NewsReceiver.swift */; };
 		3FD0E227233D4DE1003BE23C /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */; };
 		3FD0E228233D4DE1003BE23C /* NewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */; };
-		3FD0E22A233E0A9A003BE23C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E229233E0A9A003BE23C /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F700E70233E0E7F006BCBD5 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		3F700E72233E44EB006BCBD5 /* SettingsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProtocol.swift; sourceTree = "<group>"; };
 		3FC383FF233CE3E300D99E75 /* AppNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FC38402233CE3E300D99E75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3FC38404233CE3E300D99E75 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3FC38404233CE3E300D99E75 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3FC38407233CE3E300D99E75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3FC3840A233CE3E300D99E75 /* AppNews.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AppNews.xcdatamodel; sourceTree = "<group>"; };
 		3FC3840C233CE3E500D99E75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,7 +48,6 @@
 		3FD0E223233D31D2003BE23C /* NewsReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsReceiver.swift; sourceTree = "<group>"; };
 		3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
 		3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTableViewCell.xib; sourceTree = "<group>"; };
-		3FD0E229233E0A9A003BE23C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +66,7 @@
 			children = (
 				3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */,
 				3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */,
-				3FC38404233CE3E300D99E75 /* ViewController.swift */,
+				3FC38404233CE3E300D99E75 /* MainViewController.swift */,
 			);
 			path = MainViewController;
 			sourceTree = "<group>";
@@ -72,9 +74,34 @@
 		3F700E6F233E0B97006BCBD5 /* SettingViewController */ = {
 			isa = PBXGroup;
 			children = (
-				3FD0E229233E0A9A003BE23C /* SettingsViewController.swift */,
+				3F700E70233E0E7F006BCBD5 /* SettingTableViewController.swift */,
 			);
 			path = SettingViewController;
+			sourceTree = "<group>";
+		};
+		3F700E74233E4794006BCBD5 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3FC38406233CE3E300D99E75 /* Main.storyboard */,
+				3FC3840E233CE3E500D99E75 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		3F700E75233E47CA006BCBD5 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				3FC3840C233CE3E500D99E75 /* Assets.xcassets */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		3F700E76233E47DC006BCBD5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				3FC38409233CE3E300D99E75 /* AppNews.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		3FC383F6233CE3E300D99E75 = {
@@ -96,17 +123,16 @@
 		3FC38401233CE3E300D99E75 /* AppNews */ = {
 			isa = PBXGroup;
 			children = (
+				3FC38402233CE3E300D99E75 /* AppDelegate.swift */,
+				3F700E76233E47DC006BCBD5 /* CoreData */,
+				3F700E75233E47CA006BCBD5 /* Image */,
+				3F700E74233E4794006BCBD5 /* Storyboards */,
 				3FD0E22B233E0A9F003BE23C /* ViewControllers */,
 				3FC38425233CED2B00D99E75 /* Parsers */,
 				3FC38424233CEB6000D99E75 /* Receivers */,
 				3FC3841C233CE46500D99E75 /* Protocols */,
 				3FC38419233CE43E00D99E75 /* Model */,
-				3FC38402233CE3E300D99E75 /* AppDelegate.swift */,
-				3FC38406233CE3E300D99E75 /* Main.storyboard */,
-				3FC3840C233CE3E500D99E75 /* Assets.xcassets */,
-				3FC3840E233CE3E500D99E75 /* LaunchScreen.storyboard */,
 				3FC38411233CE3E500D99E75 /* Info.plist */,
-				3FC38409233CE3E300D99E75 /* AppNews.xcdatamodeld */,
 			);
 			path = AppNews;
 			sourceTree = "<group>";
@@ -123,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				3FC3841D233CE48900D99E75 /* NewsReceiverProtocol.swift */,
+				3F700E72233E44EB006BCBD5 /* SettingsProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -229,16 +256,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FD0E224233D31D2003BE23C /* NewsReceiver.swift in Sources */,
+				3F700E71233E0E7F006BCBD5 /* SettingTableViewController.swift in Sources */,
 				3FC38427233CED5100D99E75 /* ParserNewsLenta.swift in Sources */,
 				3FC38418233CE41400D99E75 /* Parsers.swift in Sources */,
+				3F700E73233E44EB006BCBD5 /* SettingsProtocol.swift in Sources */,
 				3FC38421233CE61700D99E75 /* NewsReceiverGazeta.swift in Sources */,
 				3FC3841B233CE44D00D99E75 /* New.swift in Sources */,
 				3FD0E222233D313E003BE23C /* NewsReceiverLenta.swift in Sources */,
 				3FD0E227233D4DE1003BE23C /* NewTableViewCell.swift in Sources */,
 				3FC3840B233CE3E300D99E75 /* AppNews.xcdatamodeld in Sources */,
-				3FC38405233CE3E300D99E75 /* ViewController.swift in Sources */,
+				3FC38405233CE3E300D99E75 /* MainViewController.swift in Sources */,
 				3FC3841E233CE48900D99E75 /* NewsReceiverProtocol.swift in Sources */,
-				3FD0E22A233E0A9A003BE23C /* SettingsViewController.swift in Sources */,
 				3FC38403233CE3E300D99E75 /* AppDelegate.swift in Sources */,
 				3FC38423233CE6E800D99E75 /* ParserNewsGazeta.swift in Sources */,
 			);
