@@ -14,7 +14,6 @@ func parserNewsGazeta() -> [New] {
     guard let url = URL(string: stringUrl) else { return [New()] }
     
     let parserNewsGazeta = ParserNewsGazeta()
-    
     let parser = XMLParser(contentsOf: url)
     parser?.delegate = parserNewsGazeta
     parser?.parse()
@@ -29,7 +28,6 @@ func parserNewsLenta() -> [New] {
     guard let url = URL(string: stringUrl) else { return [New()]}
     
     let parserNewsLenta = ParserNewsLenta()
-    
     let parser = XMLParser(contentsOf: url)
     parser?.delegate = parserNewsLenta
     parser?.parse()

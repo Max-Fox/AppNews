@@ -19,9 +19,8 @@ class SettingTableViewController: UITableViewController {
         
         switchIsDetail.isOn = UserDefaults.standard.value(forKey: "withDetail") as? Bool ?? false
     }
-
+    
     @IBAction func pushSwitchAction(_ sender: UISwitch!) {
         delegate?.didPressSwitchIsDetailNews(isOn: sender.isOn)
     }
-    
 }

@@ -44,6 +44,9 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4g1-qV-Fvo">
+                        <rect key="frame" x="69" y="72" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="RRJ-lI-6eG" firstAttribute="leading" secondItem="LSg-Pw-Ala" secondAttribute="trailing" constant="8" id="47m-hh-r4Z"/>
@@ -51,7 +54,9 @@
                     <constraint firstItem="jjB-iw-2Ra" firstAttribute="top" secondItem="7vI-7G-Xnt" secondAttribute="bottom" constant="2" id="8AT-Hs-5MZ"/>
                     <constraint firstItem="RRJ-lI-6eG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="CcH-Wp-hfJ"/>
                     <constraint firstItem="LSg-Pw-Ala" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="E1c-aX-xd3"/>
+                    <constraint firstItem="LSg-Pw-Ala" firstAttribute="top" secondItem="4g1-qV-Fvo" secondAttribute="bottom" constant="-84" id="ERM-Wm-z2V"/>
                     <constraint firstItem="jjB-iw-2Ra" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="FbK-RY-cXf"/>
+                    <constraint firstItem="4g1-qV-Fvo" firstAttribute="leading" secondItem="LSg-Pw-Ala" secondAttribute="trailing" constant="-81" id="JMU-Xg-jhZ"/>
                     <constraint firstItem="7vI-7G-Xnt" firstAttribute="top" secondItem="LSg-Pw-Ala" secondAttribute="bottom" constant="1" id="RhX-jX-JAq"/>
                     <constraint firstItem="7vI-7G-Xnt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Svv-0o-8vq"/>
                     <constraint firstAttribute="bottom" secondItem="jjB-iw-2Ra" secondAttribute="bottom" constant="9" id="Whw-RI-GBc"/>
@@ -63,6 +68,7 @@
             <connections>
                 <outlet property="authorLabel" destination="7vI-7G-Xnt" id="iwT-J0-BaC"/>
                 <outlet property="discriptionLabel" destination="jjB-iw-2Ra" id="Jj1-4P-eYM"/>
+                <outlet property="imageActivityIndicator" destination="4g1-qV-Fvo" id="o9d-aI-ct2"/>
                 <outlet property="imageViewNew" destination="LSg-Pw-Ala" id="Iff-7s-3o2"/>
                 <outlet property="titleLabel" destination="RRJ-lI-6eG" id="7sQ-TT-ceq"/>
             </connections>

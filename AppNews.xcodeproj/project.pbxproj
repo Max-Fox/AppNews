@@ -25,6 +25,8 @@
 		3FD0E224233D31D2003BE23C /* NewsReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E223233D31D2003BE23C /* NewsReceiver.swift */; };
 		3FD0E227233D4DE1003BE23C /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */; };
 		3FD0E228233D4DE1003BE23C /* NewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */; };
+		3FE58BD2233E6BB300047A79 /* ReadedNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE58BD1233E6BB300047A79 /* ReadedNews.swift */; };
+		3FE58BD5233F481100047A79 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE58BD4233F481100047A79 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		3FD0E223233D31D2003BE23C /* NewsReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsReceiver.swift; sourceTree = "<group>"; };
 		3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
 		3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTableViewCell.xib; sourceTree = "<group>"; };
+		3FE58BD1233E6BB300047A79 /* ReadedNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadedNews.swift; sourceTree = "<group>"; };
+		3FE58BD4233F481100047A79 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				3FC3841A233CE44D00D99E75 /* New.swift */,
+				3FE58BD1233E6BB300047A79 /* ReadedNews.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,10 +182,19 @@
 		3FD0E22B233E0A9F003BE23C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3FE58BD3233F47F500047A79 /* WebViewController */,
 				3F700E6F233E0B97006BCBD5 /* SettingViewController */,
 				3F700E6E233E0B8D006BCBD5 /* MainViewController */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3FE58BD3233F47F500047A79 /* WebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3FE58BD4233F481100047A79 /* WebViewController.swift */,
+			);
+			path = WebViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +271,7 @@
 			files = (
 				3FD0E224233D31D2003BE23C /* NewsReceiver.swift in Sources */,
 				3F700E71233E0E7F006BCBD5 /* SettingTableViewController.swift in Sources */,
+				3FE58BD2233E6BB300047A79 /* ReadedNews.swift in Sources */,
 				3FC38427233CED5100D99E75 /* ParserNewsLenta.swift in Sources */,
 				3FC38418233CE41400D99E75 /* Parsers.swift in Sources */,
 				3F700E73233E44EB006BCBD5 /* SettingsProtocol.swift in Sources */,
@@ -269,6 +284,7 @@
 				3FC3841E233CE48900D99E75 /* NewsReceiverProtocol.swift in Sources */,
 				3FC38403233CE3E300D99E75 /* AppDelegate.swift in Sources */,
 				3FC38423233CE6E800D99E75 /* ParserNewsGazeta.swift in Sources */,
+				3FE58BD5233F481100047A79 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

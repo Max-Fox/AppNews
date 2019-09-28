@@ -14,12 +14,12 @@ class NewTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
+    @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
     
     var imageStringUrl: String?
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         
         self.imageViewNew.image = nil
     }
@@ -27,10 +27,10 @@ class NewTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        self.imageActivityIndicator.isHidden = false
+        imageActivityIndicator.startAnimating()
         self.imageViewNew.contentMode = .scaleAspectFill
         loadImageByUrl()
-        
-       
     }
     
     func loadImageByUrl(){
@@ -41,6 +41,8 @@ class NewTableViewCell: UITableViewCell {
                 let image = UIImage(data: data)
                 DispatchQueue.main.sync {
                     self.imageViewNew.image = image
+                    self.imageActivityIndicator.stopAnimating()
+                    self.imageActivityIndicator.isHidden = true
                 }
             } catch let error {
                 print(error.localizedDescription)

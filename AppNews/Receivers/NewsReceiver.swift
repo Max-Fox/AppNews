@@ -9,8 +9,8 @@
 import Foundation
 
 class NewsReceiver {
-    var news: [New]?
     
+    var news: [New]?
     let receiverGazeta = NewsReceiverGazeta()
     let receiverLenta = NewsReceiverLenta()
     
@@ -20,17 +20,15 @@ class NewsReceiver {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss +zzzz"
         dateFormatter.locale = Locale.init(identifier: "en_US_POSIX")
-
         news = newsGazeta + newsLenta
-
+        
+        // убрать !
         news?.sort(by: { (a, b) -> Bool in
-
             let dateA = dateFormatter.date(from: a.pubDate!)
             let dateB = dateFormatter.date(from: b.pubDate!)
-
             return dateA! > dateB!
         })
-
+        
         return news!
     }
 }

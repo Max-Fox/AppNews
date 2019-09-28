@@ -15,7 +15,6 @@ class MainViewController: UIViewController {
     let reuseIdentifier = "NewCell"
     let receiver = NewsReceiver()
     var news: [New]?
-    var nowCurrentNews = 25
     let myRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -25,7 +24,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         self.news = receiver.getNews()
         
         title = "Новости"
@@ -39,18 +38,14 @@ class MainViewController: UIViewController {
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
-        self.news = self.receiver.getNews()
-        newsTableView.reloadData()
-        sender.endRefreshing()
-    }
-    
-    func showMore(){
-        if news?.count ?? 0 > nowCurrentNews {
-            self.nowCurrentNews += 25
+        DispatchQueue.global().async {
+            self.news = self.receiver.getNews()
+            DispatchQueue.main.sync {
+                self.newsTableView.reloadData()
+                sender.endRefreshing()
+            }
         }
-        DispatchQueue.main.async {
-            self.newsTableView.reloadData()
-        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -58,20 +53,23 @@ class MainViewController: UIViewController {
             let settingVC = segue.destination as! SettingTableViewController
             settingVC.delegate = self
         }
+        if segue.identifier == "webSegue" {
+            let webVC = segue.destination as! WebViewController
+            
+            guard let index = (sender as? IndexPath) else { return }
+        
+            webVC.urlString = news?[index.row].link
+        }
     }
     
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nowCurrentNews
+        return news?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == nowCurrentNews - 1 {
-            showMore()
-        }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NewTableViewCell
         
         cell.titleLabel.text = news?[indexPath.row].title
@@ -87,17 +85,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "webSegue", sender: indexPath)
+    }
 }
 
 extension MainViewController: SettingsProtocol {
     func didPressSwitchIsDetailNews(isOn: Bool) {
         UserDefaults.standard.set(isOn, forKey: "withDetail")
-        withDetail = isOn
+        self.withDetail = isOn
         self.newsTableView.reloadData()
     }
 }
-
-
-
-
-

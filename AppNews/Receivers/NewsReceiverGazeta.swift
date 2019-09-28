@@ -13,5 +13,4 @@ class NewsReceiverGazeta: NewsReceiverProtocol {
         let news = parserNewsGazeta()
         return news
     }
-    
 }
