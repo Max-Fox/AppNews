@@ -21,7 +21,6 @@ class WorkWithCoreData {
             let fetch: NSFetchRequest<ReadedNews> = ReadedNews.fetchRequest()
             do {
                 array = try context.fetch(fetch)
-                
             } catch {
                 print("Error: \(error.localizedDescription)")
             }

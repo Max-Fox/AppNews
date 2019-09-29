@@ -109,11 +109,12 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bh3-E3-bdx">
                                                     <rect key="frame" x="343" y="7" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="pushSwitchAction:" destination="iAD-b7-MjP" eventType="valueChanged" id="eAq-Ha-6Bo"/>
+                                                        <action selector="pushSwitchIsDetailAction:" destination="iAD-b7-MjP" eventType="valueChanged" id="eAq-Ha-6Bo"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="bh3-E3-bdx" firstAttribute="leading" secondItem="91i-g3-aCf" secondAttribute="trailing" priority="250" constant="146" id="IDK-CW-3jT"/>
                                                 <constraint firstAttribute="bottom" secondItem="91i-g3-aCf" secondAttribute="bottom" constant="10.5" id="Jgt-Gh-T1R"/>
                                                 <constraint firstItem="91i-g3-aCf" firstAttribute="top" secondItem="drv-Kw-u9r" secondAttribute="top" constant="12" id="VyA-G7-X3f"/>
                                                 <constraint firstAttribute="trailing" secondItem="bh3-E3-bdx" secondAttribute="trailing" constant="22" id="cZQ-QD-vBy"/>
@@ -123,18 +124,45 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="91u-85-ELB">
-                                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="260" id="91u-85-ELB">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="260"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="91u-85-ELB" id="vAg-Ln-Nes">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="259.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обновление по таймеру:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBM-Gd-Rff">
+                                                    <rect key="frame" x="20" y="11" width="201" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E5X-TT-eZg">
+                                                    <rect key="frame" x="343" y="7" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="pushSwitchIsTimerAction:" destination="iAD-b7-MjP" eventType="valueChanged" id="gJb-UI-YuG"/>
+                                                    </connections>
+                                                </switch>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZt-J5-Sf7">
+                                                    <rect key="frame" x="0.0" y="37" width="414" height="216"/>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="E5X-TT-eZg" firstAttribute="leading" secondItem="wBM-Gd-Rff" secondAttribute="trailing" priority="250" constant="122" id="DGL-ON-z5Y"/>
+                                                <constraint firstAttribute="trailing" secondItem="MZt-J5-Sf7" secondAttribute="trailing" id="EcH-dH-c70"/>
+                                                <constraint firstItem="MZt-J5-Sf7" firstAttribute="leading" secondItem="vAg-Ln-Nes" secondAttribute="leading" id="Fk8-Vr-27Y"/>
+                                                <constraint firstItem="wBM-Gd-Rff" firstAttribute="leading" secondItem="vAg-Ln-Nes" secondAttribute="leading" constant="20" id="PsB-Tx-5MC"/>
+                                                <constraint firstAttribute="trailing" secondItem="E5X-TT-eZg" secondAttribute="trailing" constant="22" id="Q1x-Vx-gXU"/>
+                                                <constraint firstItem="E5X-TT-eZg" firstAttribute="top" secondItem="vAg-Ln-Nes" secondAttribute="top" constant="7" id="fwg-yt-MIU"/>
+                                                <constraint firstItem="wBM-Gd-Rff" firstAttribute="top" secondItem="vAg-Ln-Nes" secondAttribute="top" constant="11" id="otB-ny-m2l"/>
+                                                <constraint firstItem="MZt-J5-Sf7" firstAttribute="top" secondItem="wBM-Gd-Rff" secondAttribute="bottom" constant="5" id="xsB-pf-hW4"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="S3N-5F-9yf">
-                                        <rect key="frame" x="0.0" y="88" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9kV-nk-1G1">
+                                        <rect key="frame" x="0.0" y="304" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S3N-5F-9yf" id="Pkw-Qf-y2F">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9kV-nk-1G1" id="Oi2-9f-cip">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -148,12 +176,15 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="cellWithTimer" destination="91u-85-ELB" id="Akk-OK-uVq"/>
+                        <outlet property="pickerViewTimer" destination="MZt-J5-Sf7" id="6mj-UR-ZAA"/>
                         <outlet property="switchIsDetail" destination="bh3-E3-bdx" id="Mt6-HC-bWg"/>
+                        <outlet property="switchIsTimer" destination="E5X-TT-eZg" id="O5m-fE-hdj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f76-ne-enK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2068.1159420289855" y="-565.17857142857144"/>
+            <point key="canvasLocation" x="2066.666666666667" y="-565.17857142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bWW-5d-9bK">

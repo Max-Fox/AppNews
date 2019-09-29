@@ -6,8 +6,10 @@
 //  Copyright © 2019 Максим Лисица. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol SettingsProtocol {
     func didPressSwitchIsDetailNews(isOn: Bool)
+    func didPressSwitchIsTimer(isOn: Bool, tableView: UITableView)
+    func didChangePickerView(currentValue: Int)
 }

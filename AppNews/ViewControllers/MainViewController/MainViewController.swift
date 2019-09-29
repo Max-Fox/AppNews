@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var newsTableView: UITableView!
     
     var workWithCoreData: WorkWithCoreData?
-    
+    var timer = Timer()
     let reuseIdentifier = "NewCell"
     let receiver = NewsReceiver()
     var news: [New]?
@@ -40,6 +40,7 @@ class MainViewController: UIViewController {
         withDetail = UserDefaults.standard.value(forKey: "withDetail") as? Bool ?? false
         
         self.workWithCoreData?.getReadedNews(array: &readedNews)
+        checkCurrentTimer()
         
     }
     
@@ -63,7 +64,7 @@ class MainViewController: UIViewController {
             let webVC = segue.destination as! WebViewController
             
             guard let index = (sender as? IndexPath) else { return }
-        
+            
             webVC.urlString = news?[index.row].link
             
             //readedNews.append(ReadedNews(id: (news?[index.row].getIdNew() ?? "")))
@@ -73,6 +74,25 @@ class MainViewController: UIViewController {
             //saveNew(id: idNew, readedNews: &readedNews)
             newsTableView.reloadData()
             
+        }
+    }
+    
+    @objc func refreshDataNewsByTimer(){
+        DispatchQueue.global().async {
+            self.news = self.receiver.getNews()
+            DispatchQueue.main.sync {
+                self.newsTableView.reloadData()
+            }
+        }
+        print("Update")
+    }
+    
+    func checkCurrentTimer(){
+        let isTimer = UserDefaults.standard.value(forKey: "withTimer") as? Bool ?? false
+        let timerValue = UserDefaults.standard.value(forKey: "valueTimer") as? Int ?? 0
+        
+        if isTimer && timerValue != 0 {
+            timer = Timer.scheduledTimer(timeInterval: TimeInterval(timerValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
         }
     }
     
@@ -114,6 +134,21 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainViewController: SettingsProtocol {
+    func didChangePickerView(currentValue: Int) {
+        UserDefaults.standard.set(currentValue, forKey: "valueTimer")
+        
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
+    }
+    
+    func didPressSwitchIsTimer(isOn: Bool, tableView: UITableView) {
+        tableView.reloadData()
+        UserDefaults.standard.set(isOn, forKey: "withTimer")
+        if !isOn {
+            timer.invalidate()
+        }
+    }
+    
     func didPressSwitchIsDetailNews(isOn: Bool) {
         UserDefaults.standard.set(isOn, forKey: "withDetail")
         self.withDetail = isOn
