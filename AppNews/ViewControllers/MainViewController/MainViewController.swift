@@ -12,9 +12,12 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var newsTableView: UITableView!
     
+    var workWithCoreData: WorkWithCoreData?
+    
     let reuseIdentifier = "NewCell"
     let receiver = NewsReceiver()
     var news: [New]?
+    var readedNews: [ReadedNews] = [] //Массив прочтенных новостей
     let myRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -35,6 +38,9 @@ class MainViewController: UIViewController {
         newsTableView.refreshControl = myRefreshControl
         
         withDetail = UserDefaults.standard.value(forKey: "withDetail") as? Bool ?? false
+        
+        self.workWithCoreData?.getReadedNews(array: &readedNews)
+        
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
@@ -59,6 +65,14 @@ class MainViewController: UIViewController {
             guard let index = (sender as? IndexPath) else { return }
         
             webVC.urlString = news?[index.row].link
+            
+            //readedNews.append(ReadedNews(id: (news?[index.row].getIdNew() ?? "")))
+            guard let idNew = news?[index.row].getIdNew() else { return }
+            
+            self.workWithCoreData?.saveNew(id: idNew, readedNews: &readedNews)
+            //saveNew(id: idNew, readedNews: &readedNews)
+            newsTableView.reloadData()
+            
         }
     }
     
@@ -75,12 +89,21 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.text = news?[indexPath.row].title
         cell.authorLabel.text = news?[indexPath.row].autor
         
+        //Проверка на то, какой режим включен (обычный или расширенный)
         if withDetail {
             cell.discriptionLabel.text = news?[indexPath.row].description
         } else {
             cell.discriptionLabel.text = ""
         }
         cell.imageStringUrl = news?[indexPath.row].image
+        
+        //Поиск в массиве прочтенных
+        if readedNews.contains(where: { (New) -> Bool in
+            return New.id == news?[indexPath.row].getIdNew()
+        }) {
+            cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        }
+        
         
         return cell
     }

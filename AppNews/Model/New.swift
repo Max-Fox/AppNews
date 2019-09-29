@@ -15,4 +15,10 @@ class New {
     var pubDate: String?
     var description: String?
     var image: String?
+    
+    func getIdNew() -> String {
+        guard let date = self.pubDate, let name = self.title, let fCharacterName = name.first else { return "nil" }
+        let id = "\(date)_\(fCharacterName)"
+        return id
+    }
 }
