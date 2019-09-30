@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t8s-gz-NRd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lSZ-3c-VcM">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jxS-QY-Qsf">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -46,7 +46,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1082.608695652174" y="-563.16964285714278"/>
+            <point key="canvasLocation" x="1992.753623188406" y="-563.16964285714278"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="r9z-yF-wvH">
@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v8V-Yz-0A0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -80,7 +80,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3PT-KS-vSm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1083" y="192"/>
+            <point key="canvasLocation" x="2902.898550724638" y="201.5625"/>
         </scene>
         <!--Setting Table View Controller-->
         <scene sceneID="qZu-GP-5Kb">
@@ -184,12 +184,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f76-ne-enK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2066.666666666667" y="-565.17857142857144"/>
+            <point key="canvasLocation" x="2976.811594202899" y="-565.17857142857144"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="bWW-5d-9bK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="t8s-gz-NRd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="home" id="RI6-LC-bsa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Rx-hX-X9i">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -202,10 +203,84 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ffX-rO-2QD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="-563.16964285714278"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="slI-dw-y7T">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="lSZ-3c-VcM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EpJ-kC-q8S">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="t8s-gz-NRd" kind="relationship" relationship="viewControllers" id="W7g-PM-Ulc"/>
+                        <segue destination="TWg-um-IQg" kind="relationship" relationship="viewControllers" id="QRQ-s9-qMX"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e0P-Qf-027" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="137.68115942028987" y="-563.16964285714278"/>
+        </scene>
+        <!--Offline View Controller-->
+        <scene sceneID="3v3-Fr-bz0">
+            <objects>
+                <viewController id="EfL-BY-vdK" customClass="OfflineViewController" customModule="AppNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gce-DX-QsL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gdo-tR-0lp">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gdo-tR-0lp" firstAttribute="leading" secondItem="5Mu-aD-cbP" secondAttribute="leading" id="4Sx-E7-Xyw"/>
+                            <constraint firstItem="gdo-tR-0lp" firstAttribute="top" secondItem="5Mu-aD-cbP" secondAttribute="top" id="fQC-bX-85r"/>
+                            <constraint firstItem="5Mu-aD-cbP" firstAttribute="bottom" secondItem="gdo-tR-0lp" secondAttribute="bottom" id="mEK-ii-slT"/>
+                            <constraint firstItem="5Mu-aD-cbP" firstAttribute="trailing" secondItem="gdo-tR-0lp" secondAttribute="trailing" id="ty1-Ab-soI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5Mu-aD-cbP"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4uY-EM-Cpp"/>
+                    <connections>
+                        <outlet property="tableViewOfflineNews" destination="gdo-tR-0lp" id="Ka2-13-YYk"/>
+                        <segue destination="7pI-Bg-bvl" kind="show" identifier="webOfflineSegue" id="CIR-qn-96e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L8p-9r-mRu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="201.5625"/>
+        </scene>
+        <!--Избранное-->
+        <scene sceneID="WJz-Po-O52">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TWg-um-IQg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Избранное" image="save" id="sTM-Xx-jXM"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="svY-af-meg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EfL-BY-vdK" kind="relationship" relationship="rootViewController" id="uSQ-tF-sZc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbW-9T-Qid" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="201.5625"/>
         </scene>
     </scenes>
     <resources>
+        <image name="home" width="25" height="25"/>
         <image name="icons8-settings" width="25" height="25"/>
+        <image name="save" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="CIR-qn-96e"/>
+    </inferredMetricsTieBreakers>
 </document>

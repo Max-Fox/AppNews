@@ -27,6 +27,10 @@
 		3FD0E227233D4DE1003BE23C /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */; };
 		3FD0E228233D4DE1003BE23C /* NewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */; };
 		3FE58BD5233F481100047A79 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE58BD4233F481100047A79 /* WebViewController.swift */; };
+		3FE68145234235B3006B9438 /* OfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE68144234235B3006B9438 /* OfflineViewController.swift */; };
+		3FE6814723423CE6006B9438 /* TableVIewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE6814623423CE6006B9438 /* TableVIewCellProtocol.swift */; };
+		3FE6814A23424B5C006B9438 /* OfflineNewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE6814823424B5C006B9438 /* OfflineNewTableViewCell.swift */; };
+		3FE6814B23424B5C006B9438 /* OfflineNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FE6814923424B5C006B9438 /* OfflineNewTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
 		3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTableViewCell.xib; sourceTree = "<group>"; };
 		3FE58BD4233F481100047A79 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		3FE68144234235B3006B9438 /* OfflineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineViewController.swift; sourceTree = "<group>"; };
+		3FE6814623423CE6006B9438 /* TableVIewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVIewCellProtocol.swift; sourceTree = "<group>"; };
+		3FE6814823424B5C006B9438 /* OfflineNewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineNewTableViewCell.swift; sourceTree = "<group>"; };
+		3FE6814923424B5C006B9438 /* OfflineNewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfflineNewTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +163,7 @@
 			children = (
 				3FC3841D233CE48900D99E75 /* NewsReceiverProtocol.swift */,
 				3F700E72233E44EB006BCBD5 /* SettingsProtocol.swift */,
+				3FE6814623423CE6006B9438 /* TableVIewCellProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -182,6 +191,7 @@
 		3FD0E22B233E0A9F003BE23C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3FE6814323423551006B9438 /* OfflineViewController */,
 				3FE58BD3233F47F500047A79 /* WebViewController */,
 				3F700E6F233E0B97006BCBD5 /* SettingViewController */,
 				3F700E6E233E0B8D006BCBD5 /* MainViewController */,
@@ -195,6 +205,16 @@
 				3FE58BD4233F481100047A79 /* WebViewController.swift */,
 			);
 			path = WebViewController;
+			sourceTree = "<group>";
+		};
+		3FE6814323423551006B9438 /* OfflineViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3FE68144234235B3006B9438 /* OfflineViewController.swift */,
+				3FE6814823424B5C006B9438 /* OfflineNewTableViewCell.swift */,
+				3FE6814923424B5C006B9438 /* OfflineNewTableViewCell.xib */,
+			);
+			path = OfflineViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE6814B23424B5C006B9438 /* OfflineNewTableViewCell.xib in Resources */,
 				3FC38410233CE3E500D99E75 /* LaunchScreen.storyboard in Resources */,
 				3FC3840D233CE3E500D99E75 /* Assets.xcassets in Resources */,
 				3FD0E228233D4DE1003BE23C /* NewTableViewCell.xib in Resources */,
@@ -278,11 +299,14 @@
 				3FC3841B233CE44D00D99E75 /* New.swift in Sources */,
 				3FD0E222233D313E003BE23C /* NewsReceiverLenta.swift in Sources */,
 				3FD0E227233D4DE1003BE23C /* NewTableViewCell.swift in Sources */,
+				3FE6814723423CE6006B9438 /* TableVIewCellProtocol.swift in Sources */,
 				3FC3840B233CE3E300D99E75 /* AppNews.xcdatamodeld in Sources */,
 				3FC38405233CE3E300D99E75 /* MainViewController.swift in Sources */,
 				3FC3841E233CE48900D99E75 /* NewsReceiverProtocol.swift in Sources */,
 				3FB6CE5E234124A800E1D0FB /* WorkWithCoreData.swift in Sources */,
+				3FE68145234235B3006B9438 /* OfflineViewController.swift in Sources */,
 				3FC38403233CE3E300D99E75 /* AppDelegate.swift in Sources */,
+				3FE6814A23424B5C006B9438 /* OfflineNewTableViewCell.swift in Sources */,
 				3FC38423233CE6E800D99E75 /* ParserNewsGazeta.swift in Sources */,
 				3FE58BD5233F481100047A79 /* WebViewController.swift in Sources */,
 			);

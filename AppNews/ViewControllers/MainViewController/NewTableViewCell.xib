@@ -47,10 +47,18 @@
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4g1-qV-Fvo">
                         <rect key="frame" x="69" y="72" width="20" height="20"/>
                     </activityIndicatorView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ude-UC-kTX">
+                        <rect key="frame" x="279" y="130" width="25" height="25"/>
+                        <state key="normal" image="add_to_favorites"/>
+                        <connections>
+                            <action selector="addFavoriteButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7No-MV-bmY"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="RRJ-lI-6eG" firstAttribute="leading" secondItem="LSg-Pw-Ala" secondAttribute="trailing" constant="8" id="47m-hh-r4Z"/>
                     <constraint firstAttribute="trailing" secondItem="jjB-iw-2Ra" secondAttribute="trailing" constant="16" id="4to-wF-T5b"/>
+                    <constraint firstItem="jjB-iw-2Ra" firstAttribute="top" secondItem="Ude-UC-kTX" secondAttribute="bottom" constant="15" id="7on-Dz-0qf"/>
                     <constraint firstItem="jjB-iw-2Ra" firstAttribute="top" secondItem="7vI-7G-Xnt" secondAttribute="bottom" constant="2" id="8AT-Hs-5MZ"/>
                     <constraint firstItem="RRJ-lI-6eG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="CcH-Wp-hfJ"/>
                     <constraint firstItem="LSg-Pw-Ala" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="E1c-aX-xd3"/>
@@ -61,11 +69,13 @@
                     <constraint firstItem="7vI-7G-Xnt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Svv-0o-8vq"/>
                     <constraint firstAttribute="bottom" secondItem="jjB-iw-2Ra" secondAttribute="bottom" constant="9" id="Whw-RI-GBc"/>
                     <constraint firstItem="LSg-Pw-Ala" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="a7D-41-shz"/>
+                    <constraint firstAttribute="trailing" secondItem="Ude-UC-kTX" secondAttribute="trailing" constant="16" id="d4A-4b-urm"/>
                     <constraint firstAttribute="trailing" secondItem="RRJ-lI-6eG" secondAttribute="trailing" constant="6" id="saB-z0-I3q"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="addFavoriteButton" destination="Ude-UC-kTX" id="crm-hq-ikk"/>
                 <outlet property="authorLabel" destination="7vI-7G-Xnt" id="iwT-J0-BaC"/>
                 <outlet property="discriptionLabel" destination="jjB-iw-2Ra" id="Jj1-4P-eYM"/>
                 <outlet property="imageActivityIndicator" destination="4g1-qV-Fvo" id="o9d-aI-ct2"/>
@@ -75,4 +85,7 @@
             <point key="canvasLocation" x="47.826086956521742" y="85.714285714285708"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="add_to_favorites" width="25" height="25"/>
+    </resources>
 </document>

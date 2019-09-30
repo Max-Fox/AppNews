@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     let receiver = NewsReceiver()
     var news: [New]?
     var readedNews: [ReadedNews] = [] //Массив прочтенных новостей
+    var offlineNew: [NewOffline] = []
     let myRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -29,8 +30,10 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         self.news = receiver.getNews()
+        workWithCoreData?.getAllOfflineNews(in: &offlineNew)
         
-        title = "Новости"
+        title = "Главная"
+        navigationItem.title = "Новости"
         
         newsTableView.register(UINib(nibName: "NewTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         newsTableView.delegate = self
@@ -124,7 +127,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         }
         
+        if offlineNew.contains(where: { (offNew) -> Bool in
+            return offNew.title == news?[indexPath.row].title
+        }) {
+            cell.isOffline = true
+        }
         
+        cell.indexNew = indexPath
+        cell.delegate = self
         return cell
     }
     
@@ -157,5 +167,21 @@ extension MainViewController: SettingsProtocol {
         UserDefaults.standard.set(isOn, forKey: "withDetail")
         self.withDetail = isOn
         self.newsTableView.reloadData()
+    }
+}
+
+extension MainViewController: TableViewCellProtocol {
+    func didPressToSaveNew(indexNew: IndexPath, button: UIButton, isOffline: Bool) {
+        guard let newForSave = news?[indexNew.row] else { return }
+        
+        if isOffline {
+            self.workWithCoreData?.deleteNewOffline(new: newForSave)
+            button.setImage(#imageLiteral(resourceName: "add_to_favorites"), for: .normal)
+        } else {
+            self.workWithCoreData?.saveNewInOffline(new: newForSave, newsOffline: &offlineNew)
+            button.setImage(#imageLiteral(resourceName: "remove_to_favorites"), for: .normal)
+        }
+        
+        newsTableView.reloadRows(at: [indexNew], with: .automatic)
     }
 }
