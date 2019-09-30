@@ -141,12 +141,16 @@ extension MainViewController: SettingsProtocol {
         timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
     }
     
-    func didPressSwitchIsTimer(isOn: Bool, tableView: UITableView) {
+    func didPressSwitchIsTimer(isOn: Bool, tableView: UITableView, currentValueTimer: Int) {
         tableView.reloadData()
         UserDefaults.standard.set(isOn, forKey: "withTimer")
         if !isOn {
             timer.invalidate()
+        } else {
+            UserDefaults.standard.set(currentValueTimer, forKey: "valueTimer")
+            timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValueTimer), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
         }
+        
     }
     
     func didPressSwitchIsDetailNews(isOn: Bool) {

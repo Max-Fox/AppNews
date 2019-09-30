@@ -47,7 +47,7 @@ class SettingTableViewController: UITableViewController {
         delegate?.didPressSwitchIsDetailNews(isOn: sender.isOn)
     }
     @IBAction func pushSwitchIsTimerAction(_ sender: UISwitch) {
-        delegate?.didPressSwitchIsTimer(isOn: sender.isOn, tableView: tableView)
+        delegate?.didPressSwitchIsTimer(isOn: sender.isOn, tableView: tableView, currentValueTimer: arrayValueTimer[pickerViewTimer.selectedRow(inComponent: 0)])
     }
 }
 
