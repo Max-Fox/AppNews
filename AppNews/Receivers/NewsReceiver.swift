@@ -10,17 +10,17 @@ import Foundation
 
 class NewsReceiver {
     
-    var news: [New]?
+    var news: [NewCoreData]?
     let receiverGazeta = NewsReceiverGazeta()
     let receiverLenta = NewsReceiverLenta()
     
-    func getNews() -> [New] {
+    func getNews() -> [NewCoreData] {
         let newsGazeta = receiverGazeta.obtainNews()
-        let newsLenta = receiverLenta.obtainNews()
+       // let newsLenta = receiverLenta.obtainNews()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss +zzzz"
         dateFormatter.locale = Locale.init(identifier: "en_US_POSIX")
-        news = newsGazeta + newsLenta
+        news = newsGazeta // + newsLenta
         
         // убрать !
         news?.sort(by: { (a, b) -> Bool in

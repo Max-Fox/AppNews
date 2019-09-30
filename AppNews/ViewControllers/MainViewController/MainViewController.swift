@@ -16,7 +16,8 @@ class MainViewController: UIViewController {
     var timer = Timer()
     let reuseIdentifier = "NewCell"
     let receiver = NewsReceiver()
-    var news: [New]?
+    //var news: [New]?
+    var newsCD: [NewCoreData] = []
     var readedNews: [ReadedNews] = [] //Массив прочтенных новостей
     let myRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -28,7 +29,24 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.news = receiver.getNews()
+        self.workWithCoreData?.getAllNews(arrayNews: &newsCD)
+        print("COUNT \(newsCD.count)")
+        
+        DispatchQueue.global().async {
+            let tmpNews = self.receiver.getNews()
+            if tmpNews.count != 0 {
+                self.newsCD = tmpNews
+                print("Перед сохранением: \(self.newsCD.count)")
+            }
+            DispatchQueue.main.sync {
+                
+                if tmpNews.count != 0 {
+                   // self.workWithCoreData?.clearSaveNews()
+                    self.workWithCoreData?.saveAllNews(arrayNewsForSave: self.newsCD)
+                }
+                self.newsTableView.reloadData()
+            }
+        }
         
         title = "Новости"
         
@@ -40,13 +58,14 @@ class MainViewController: UIViewController {
         withDetail = UserDefaults.standard.value(forKey: "withDetail") as? Bool ?? false
         
         self.workWithCoreData?.getReadedNews(array: &readedNews)
+        
         checkCurrentTimer()
         
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
         DispatchQueue.global().async {
-            self.news = self.receiver.getNews()
+            self.newsCD = self.receiver.getNews()
             DispatchQueue.main.sync {
                 self.newsTableView.reloadData()
                 sender.endRefreshing()
@@ -65,10 +84,10 @@ class MainViewController: UIViewController {
             
             guard let index = (sender as? IndexPath) else { return }
             
-            webVC.urlString = news?[index.row].link
+            webVC.urlString = newsCD[index.row].link
             
             //readedNews.append(ReadedNews(id: (news?[index.row].getIdNew() ?? "")))
-            guard let idNew = news?[index.row].getIdNew() else { return }
+            let idNew = newsCD[index.row].getIdNew()
             
             self.workWithCoreData?.saveNew(id: idNew, readedNews: &readedNews)
             //saveNew(id: idNew, readedNews: &readedNews)
@@ -79,7 +98,7 @@ class MainViewController: UIViewController {
     
     @objc func refreshDataNewsByTimer(){
         DispatchQueue.global().async {
-            self.news = self.receiver.getNews()
+            self.newsCD = self.receiver.getNews()
             DispatchQueue.main.sync {
                 self.newsTableView.reloadData()
             }
@@ -100,26 +119,27 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news?.count ?? 0
+        return newsCD.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NewTableViewCell
         
-        cell.titleLabel.text = news?[indexPath.row].title
-        cell.authorLabel.text = news?[indexPath.row].autor
+        cell.titleLabel.text = newsCD[indexPath.row].title
+        cell.authorLabel.text = newsCD[indexPath.row].autor
         
         //Проверка на то, какой режим включен (обычный или расширенный)
         if withDetail {
-            cell.discriptionLabel.text = news?[indexPath.row].description
+            cell.discriptionLabel.text = newsCD[indexPath.row].descriptionNew
         } else {
             cell.discriptionLabel.text = ""
         }
-        cell.imageStringUrl = news?[indexPath.row].image
+        //cell.imageStringUrl = newsCD[indexPath.row].image
+        cell.imageData = newsCD[indexPath.row].image
         
         //Поиск в массиве прочтенных
         if readedNews.contains(where: { (New) -> Bool in
-            return New.id == news?[indexPath.row].getIdNew()
+            return New.id == newsCD[indexPath.row].getIdNew()
         }) {
             cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         }
@@ -134,6 +154,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainViewController: SettingsProtocol {
+    func didPressButtonClearSavedNews() {
+        self.workWithCoreData?.clearSaveNews()
+    }
+    
     func didChangePickerView(currentValue: Int) {
         UserDefaults.standard.set(currentValue, forKey: "valueTimer")
         

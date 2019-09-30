@@ -9,8 +9,8 @@
 import Foundation
 
 class NewsReceiverLenta: NewsReceiverProtocol {
-    func obtainNews() -> [New] {
-        let news = parserNewsLenta()
-        return news
+    func obtainNews() -> [NewCoreData] {
+        //let news = parserNewsLenta()
+        return [NewCoreData()]
     }
 }

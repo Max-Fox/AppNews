@@ -17,6 +17,7 @@ class NewTableViewCell: UITableViewCell {
     @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
     
     var imageStringUrl: String?
+    var imageData: Data?
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -28,10 +29,16 @@ class NewTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.imageActivityIndicator.isHidden = false
-        imageActivityIndicator.startAnimating()
+        //self.imageActivityIndicator.isHidden = false
+        //imageActivityIndicator.startAnimating()
         self.imageViewNew.contentMode = .scaleAspectFill
-        loadImageByUrl()
+        //loadImageByUrl()
+        loadImageByData()
+    }
+    
+    func loadImageByData() {
+        guard let imageData = imageData else { return }
+        self.imageViewNew.image = UIImage(data: imageData)
     }
     
     func loadImageByUrl(){

@@ -22,3 +22,11 @@ class New {
         return id
     }
 }
+
+extension NewCoreData {
+    func getIdNew() -> String {
+        guard let date = self.pubDate, let name = self.title, let fCharacterName = name.first else { return "nil" }
+        let id = "\(date)_\(fCharacterName)"
+        return id
+    }
+}

@@ -8,10 +8,10 @@
 
 import Foundation
 
-func parserNewsGazeta() -> [New] {
+func parserNewsGazeta() -> [NewCoreData] {
     let stringUrl = "https://www.gazeta.ru/export/rss/lenta.xml"
     
-    guard let url = URL(string: stringUrl) else { return [New()] }
+    guard let url = URL(string: stringUrl) else { return [NewCoreData()] }
     
     let parserNewsGazeta = ParserNewsGazeta()
     let parser = XMLParser(contentsOf: url)
@@ -22,15 +22,15 @@ func parserNewsGazeta() -> [New] {
 }
 
 
-func parserNewsLenta() -> [New] {
-    let stringUrl = "https://lenta.ru/rss"
-    
-    guard let url = URL(string: stringUrl) else { return [New()]}
-    
-    let parserNewsLenta = ParserNewsLenta()
-    let parser = XMLParser(contentsOf: url)
-    parser?.delegate = parserNewsLenta
-    parser?.parse()
-    
-    return parserNewsLenta.arrayNews
-}
+//func parserNewsLenta() -> [NewCoreData] {
+//    let stringUrl = "https://lenta.ru/rss"
+//
+//    guard let url = URL(string: stringUrl) else { return [NewCoreData()]}
+//
+//    let parserNewsLenta = ParserNewsLenta()
+//    let parser = XMLParser(contentsOf: url)
+//    parser?.delegate = parserNewsLenta
+//    parser?.parse()
+//
+//    return parserNewsLenta.arrayNews
+//}

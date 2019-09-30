@@ -9,5 +9,5 @@
 import Foundation
 
 protocol NewsReceiverProtocol {
-    func obtainNews() -> [New]
+    func obtainNews() -> [NewCoreData]
 }

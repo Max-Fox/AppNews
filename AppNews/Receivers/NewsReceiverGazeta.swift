@@ -8,8 +8,8 @@
 
 import Foundation
 
-class NewsReceiverGazeta: NewsReceiverProtocol {
-    func obtainNews() -> [New] {
+class NewsReceiverGazeta: NewsReceiverProtocol {    
+    func obtainNews() -> [NewCoreData] {
         let news = parserNewsGazeta()
         return news
     }

@@ -35,6 +35,9 @@ class SettingTableViewController: UITableViewController {
         }) ?? 0, inComponent: 0, animated: true)
         
     }
+    @IBAction func clearSaveNewsAction(_ sender: Any) {
+        delegate?.didPressButtonClearSavedNews()
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 1 && switchIsTimer.isOn {
