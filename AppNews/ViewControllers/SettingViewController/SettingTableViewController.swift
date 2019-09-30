@@ -50,7 +50,10 @@ class SettingTableViewController: UITableViewController {
         delegate?.didPressSwitchIsTimer(isOn: sender.isOn, tableView: tableView, currentValueTimer: arrayValueTimer[pickerViewTimer.selectedRow(inComponent: 0)])
     }
     @IBAction func pushClearReadedNewsButton(_ sender: Any) {
-        delegate?.didPushClearReadedNewsButton()
+        delegate?.didPressClearReadedNewsButton()
+    }
+    @IBAction func pushClearOfflineNewsButton(_ sender: Any) {
+        delegate?.didPressClearOfflineNews()
     }
 }
 

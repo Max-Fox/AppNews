@@ -125,5 +125,20 @@ class WorkWithCoreData {
         }
     }
     
+    func deleteAllOfflineNews(){
+        guard let context = context else { return }
+        
+         let fetch: NSFetchRequest<NewOffline> = NewOffline.fetchRequest()
+        
+        do {
+            let arrayOfflineNews = try context.fetch(fetch)
+            for new in arrayOfflineNews {
+                context.delete(new)
+            }
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
     
 }

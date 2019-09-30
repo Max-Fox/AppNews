@@ -177,6 +177,29 @@
                                             <constraints>
                                                 <constraint firstItem="BnL-n3-5i1" firstAttribute="leading" secondItem="Oi2-9f-cip" secondAttribute="leading" constant="20" id="RJW-m4-8e1"/>
                                                 <constraint firstItem="BnL-n3-5i1" firstAttribute="top" secondItem="Oi2-9f-cip" secondAttribute="top" constant="6" id="aRs-H0-67M"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BnL-n3-5i1" secondAttribute="trailing" priority="250" constant="111" id="p8T-3Q-T2u"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Y7x-te-mus">
+                                        <rect key="frame" x="0.0" y="348" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y7x-te-mus" id="7kS-ed-7Yk">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJf-Af-tJ8">
+                                                    <rect key="frame" x="20" y="6" width="292" height="30"/>
+                                                    <state key="normal" title="Очистить список сохраненных новостей"/>
+                                                    <connections>
+                                                        <action selector="pushClearOfflineNewsButton:" destination="iAD-b7-MjP" eventType="touchUpInside" id="G8z-Vj-4RL"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hJf-Af-tJ8" firstAttribute="top" secondItem="7kS-ed-7Yk" secondAttribute="top" constant="6" id="b2e-Np-G85"/>
+                                                <constraint firstItem="hJf-Af-tJ8" firstAttribute="leading" secondItem="7kS-ed-7Yk" secondAttribute="leading" constant="20" id="ggL-oB-VV7"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hJf-Af-tJ8" secondAttribute="trailing" priority="250" constant="111" id="pmc-8E-8k9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

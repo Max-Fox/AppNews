@@ -155,7 +155,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainViewController: SettingsProtocol {
-    func didPushClearReadedNewsButton() {
+    func didPressClearOfflineNews() {
+        workWithCoreData?.deleteAllOfflineNews()
+        print("Удалены все сохраненные новости")
+    }
+    
+    func didPressClearReadedNewsButton() {
         workWithCoreData?.deleteAllReadedNews()
         print("Удалены прочтенные новости")
     }
