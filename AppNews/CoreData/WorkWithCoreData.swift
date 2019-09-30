@@ -27,6 +27,23 @@ class WorkWithCoreData {
         
     }
     
+    func deleteAllReadedNews() {
+        guard let context = self.context else { return }
+        //Заполнение массива array избранными блюдами
+        //let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //let context = appDelegate.persistentContainer.viewContext
+        let fetch: NSFetchRequest<ReadedNews> = ReadedNews.fetchRequest()
+        do {
+            let readedNews = try context.fetch(fetch)
+            for news in readedNews {
+                context.delete(news)
+            }
+            try context.save()
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+    }
+    
     func saveNew(id: String, readedNews: inout [ReadedNews]){
         guard let context = context else { return }
         //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -92,6 +109,17 @@ class WorkWithCoreData {
             context.delete(newForDelete)
             try context.save()
             print("Удалено")
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func deleteNewOffline(newOffline: NewOffline) {
+        guard let context = context else { return }
+        
+        do {
+            context.delete(newOffline)
+            try context.save()
         } catch {
             print(error.localizedDescription)
         }

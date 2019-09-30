@@ -12,16 +12,7 @@ class OfflineViewController: UIViewController {
     @IBOutlet weak var tableViewOfflineNews: UITableView!
     
     var workWithCoreData: WorkWithCoreData?
-    var offlineNews: [NewOffline] = [] {
-        didSet {
-            offlineNews.sort { (a, b) -> Bool in
-                if let dataA = a.pubDate, let dataB = b.pubDate {
-                    return dataA > dataB
-                }
-                return false
-            }
-        }
-    }
+    var offlineNews: [NewOffline] = []
     var readedNews: [ReadedNews] = []
     let reuseIdentifier = "NewOfflineCell"
     
@@ -42,6 +33,7 @@ class OfflineViewController: UIViewController {
         super.viewWillAppear(animated)
         
         workWithCoreData?.getAllOfflineNews(in: &offlineNews)
+        workWithCoreData?.getReadedNews(array: &readedNews)
         tableViewOfflineNews.reloadData()
 
     }
@@ -53,6 +45,13 @@ class OfflineViewController: UIViewController {
             guard let index = (sender as? IndexPath) else { return }
             
             webVC.urlString = offlineNews[index.row].link
+            
+            //readedNews.append(ReadedNews(id: (news?[index.row].getIdNew() ?? "")))
+            //guard let idNew = offlineNews[index.row].getIdNew() else { return }
+            
+            self.workWithCoreData?.saveNew(id: offlineNews[index.row].getIdNew(), readedNews: &readedNews)
+            //saveNew(id: idNew, readedNews: &readedNews)
+            tableViewOfflineNews.reloadData()
             
             //readedNews.append(ReadedNews(id: (news?[index.row].getIdNew() ?? "")))
 //            guard let idNew = news?[index.row].getIdNew() else { return }
@@ -78,6 +77,14 @@ extension OfflineViewController: UITableViewDelegate, UITableViewDataSource {
         cell.discriptionLabel.text = offlineNews[indexPath.row].descriptionNew
         cell.isOffline = true
         cell.delegate = self
+        cell.indexNew = indexPath
+        
+        //Поиск в массиве прочтенных
+        if readedNews.contains(where: { (New) -> Bool in
+            return New.id == offlineNews[indexPath.row].getIdNew()
+        }) {
+            cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        }
         
         guard let data = offlineNews[indexPath.row].image else { return cell }
         
@@ -95,7 +102,9 @@ extension OfflineViewController: UITableViewDelegate, UITableViewDataSource {
 }
 extension OfflineViewController: TableViewCellProtocol {
     func didPressToSaveNew(indexNew: IndexPath, button: UIButton, isOffline: Bool) {
-        print("Press")
+        workWithCoreData?.deleteNewOffline(newOffline: offlineNews[indexNew.row])
+        offlineNews.remove(at: indexNew.row)
+        tableViewOfflineNews.reloadData()
     }
     
     

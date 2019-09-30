@@ -165,6 +165,19 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9kV-nk-1G1" id="Oi2-9f-cip">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnL-n3-5i1">
+                                                    <rect key="frame" x="20" y="6" width="283" height="30"/>
+                                                    <state key="normal" title="Очистить список прочтенных новостей"/>
+                                                    <connections>
+                                                        <action selector="pushClearReadedNewsButton:" destination="iAD-b7-MjP" eventType="touchUpInside" id="cdg-Cp-UeO"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BnL-n3-5i1" firstAttribute="leading" secondItem="Oi2-9f-cip" secondAttribute="leading" constant="20" id="RJW-m4-8e1"/>
+                                                <constraint firstItem="BnL-n3-5i1" firstAttribute="top" secondItem="Oi2-9f-cip" secondAttribute="top" constant="6" id="aRs-H0-67M"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

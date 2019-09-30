@@ -26,6 +26,7 @@ class MainViewController: UIViewController {
     }()
     var withDetail: Bool = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +45,14 @@ class MainViewController: UIViewController {
         
         self.workWithCoreData?.getReadedNews(array: &readedNews)
         checkCurrentTimer()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        workWithCoreData?.getReadedNews(array: &readedNews)
+        newsTableView.reloadData()
         
     }
     
@@ -146,6 +155,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainViewController: SettingsProtocol {
+    func didPushClearReadedNewsButton() {
+        workWithCoreData?.deleteAllReadedNews()
+        print("Удалены прочтенные новости")
+    }
+    
     func didChangePickerView(currentValue: Int) {
         UserDefaults.standard.set(currentValue, forKey: "valueTimer")
         

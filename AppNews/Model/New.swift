@@ -17,8 +17,18 @@ class New {
     var image: String?
     
     func getIdNew() -> String {
-        guard let date = self.pubDate, let name = self.title, let fCharacterName = name.first else { return "nil" }
-        let id = "\(date)_\(fCharacterName)"
+//        guard let date = self.pubDate, let name = self.title, let fCharacterName = name.first else { return "nil" }
+        //let id = "\(date)_\(fCharacterName)"
+        guard let id = link else { return "nil"}
+    
+        return id
+    }
+}
+
+extension NewOffline {
+    func getIdNew() -> String {
+        guard let id = link else { return "nil"}
+        
         return id
     }
 }

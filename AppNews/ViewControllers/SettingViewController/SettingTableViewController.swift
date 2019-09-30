@@ -49,6 +49,9 @@ class SettingTableViewController: UITableViewController {
     @IBAction func pushSwitchIsTimerAction(_ sender: UISwitch) {
         delegate?.didPressSwitchIsTimer(isOn: sender.isOn, tableView: tableView, currentValueTimer: arrayValueTimer[pickerViewTimer.selectedRow(inComponent: 0)])
     }
+    @IBAction func pushClearReadedNewsButton(_ sender: Any) {
+        delegate?.didPushClearReadedNewsButton()
+    }
 }
 
 extension SettingTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
