@@ -12,7 +12,17 @@ class OfflineViewController: UIViewController {
     @IBOutlet weak var tableViewOfflineNews: UITableView!
     
     var workWithCoreData: WorkWithCoreData?
-    var offlineNews: [NewOffline] = []
+    var offlineNews: [NewOffline] = [] {
+        didSet {
+            offlineNews.sort { (a, b) -> Bool in
+                if let dataA = a.pubDate, let dataB = b.pubDate {
+                    return dataA > dataB
+                }
+                return false
+            }
+        }
+    }
+    var readedNews: [ReadedNews] = []
     let reuseIdentifier = "NewOfflineCell"
     
     override func viewDidLoad() {
@@ -20,6 +30,7 @@ class OfflineViewController: UIViewController {
         
         navigationItem.title = "Избранное"
         workWithCoreData?.getAllOfflineNews(in: &offlineNews)
+        self.workWithCoreData?.getReadedNews(array: &readedNews)
         
         tableViewOfflineNews.register(UINib(nibName: "OfflineNewTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         tableViewOfflineNews.delegate = self
@@ -32,6 +43,7 @@ class OfflineViewController: UIViewController {
         
         workWithCoreData?.getAllOfflineNews(in: &offlineNews)
         tableViewOfflineNews.reloadData()
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

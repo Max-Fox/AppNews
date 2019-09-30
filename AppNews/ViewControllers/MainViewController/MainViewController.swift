@@ -131,6 +131,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             return offNew.title == news?[indexPath.row].title
         }) {
             cell.isOffline = true
+        } else {
+            cell.isOffline = false
         }
         
         cell.indexNew = indexPath
