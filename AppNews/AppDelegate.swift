@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let tabBarController = self.window?.rootViewController as? UITabBarController, let navigationController =
             tabBarController.viewControllers?[0] as? UINavigationController, let mainViewController = navigationController.topViewController as? NewsViewController {
             
-            let workWithCoreData = WorkWithCoreData()
+            let workWithCoreData = CoreDataManager()
             workWithCoreData.context = persistentContainer.viewContext
             
-            mainViewController.workWithCoreData = workWithCoreData
+            mainViewController.coreDataManager = workWithCoreData
             
             if let navigationController = tabBarController.viewControllers?[1] as? UINavigationController, let offlineViewController = navigationController.topViewController as? FavoritesViewController {
                 offlineViewController.workWithCoreData = workWithCoreData

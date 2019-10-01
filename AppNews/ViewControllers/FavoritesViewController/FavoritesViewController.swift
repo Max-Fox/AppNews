@@ -12,7 +12,7 @@ class FavoritesViewController: UIViewController {
     
     @IBOutlet weak var tableViewOfflineNews: UITableView!
     
-    var workWithCoreData: WorkWithCoreData?
+    var workWithCoreData: CoreDataManager?
     var offlineNews: [NewOffline] = []
     var readedNews: [ReadedNews] = []
     let reuseIdentifier = "NewFavoriteCell"

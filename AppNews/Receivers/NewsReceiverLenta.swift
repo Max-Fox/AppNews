@@ -22,6 +22,7 @@ class NewsReceiverLenta: NewsReceiverProtocol {
         parser?.parse()
         
         let news = parserNewsLenta.arrayNews
+        
         return news
     }
 }

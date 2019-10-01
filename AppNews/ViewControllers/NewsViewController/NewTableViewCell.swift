@@ -12,12 +12,7 @@ class NewTableViewCell: UITableViewCell {
     
     var delegate: TableViewCellProtocol?
     
-    @IBOutlet weak var imageViewNew: UIImageView! {
-        didSet {
-            self.imageActivityIndicator.stopAnimating()
-            self.imageActivityIndicator.isHidden = true
-        }
-    }
+    @IBOutlet weak var imageViewNew: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var discriptionLabel: UILabel!
@@ -27,6 +22,13 @@ class NewTableViewCell: UITableViewCell {
     var indexNew: IndexPath?
     var imageStringUrl: String?
     var isOffline: Bool = false
+    var imageNew: UIImage? {
+        didSet {
+            self.imageViewNew.image = self.imageNew
+            self.imageActivityIndicator.stopAnimating()
+            self.imageActivityIndicator.isHidden = true
+        }
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()

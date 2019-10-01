@@ -14,7 +14,7 @@ class New {
     var autor: String?
     var pubDate: String?
     var description: String?
-    var image: String?
+    var pathToImage: String?
     
     func getIdNew() -> String {
         guard let id = link else { return "nil"}

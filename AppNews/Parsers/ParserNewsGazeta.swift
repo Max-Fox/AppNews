@@ -22,7 +22,7 @@ class ParserNewsGazeta: NSObject, XMLParserDelegate {
         
         if elementName == "enclosure" {
             if let currentUrlImage = attributeDict["url"] {
-                currentNew?.image = currentUrlImage
+                currentNew?.pathToImage = currentUrlImage
             }
         }
         if elementName == "description" {

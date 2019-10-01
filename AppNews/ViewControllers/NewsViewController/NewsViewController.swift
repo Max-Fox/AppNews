@@ -12,7 +12,8 @@ class NewsViewController: UIViewController {
     
     @IBOutlet weak var newsTableView: UITableView!
     
-    var workWithCoreData: WorkWithCoreData?
+    var coreDataManager: CoreDataManager?
+    var imageDownloader = ImageDownloader()
     var timer = Timer()
     let reuseIdentifier = "NewCell"
     let receiver = NewsReceiver()
@@ -31,7 +32,7 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         
         self.news = receiver.getNews()
-        self.workWithCoreData?.getAllOfflineNews(in: &offlineNew)
+        self.coreDataManager?.getAllOfflineNews(in: &offlineNew)
         
         title = "Главная"
         navigationItem.title = "Новости"
@@ -40,15 +41,14 @@ class NewsViewController: UIViewController {
         self.newsTableView.delegate = self
         self.newsTableView.dataSource = self
         self.newsTableView.refreshControl = myRefreshControl
-        //self.withDetail = UserDefaults.standard.value(forKey: "withDetail") as? Bool ?? false
-        self.workWithCoreData?.getReadedNews(array: &readedNews)
+        self.coreDataManager?.getReadedNews(array: &readedNews)
         checkCurrentTimer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.workWithCoreData?.getReadedNews(array: &readedNews)
+        self.coreDataManager?.getReadedNews(array: &readedNews)
         self.newsTableView.reloadData()
     }
     
@@ -73,7 +73,7 @@ class NewsViewController: UIViewController {
             guard let index = (sender as? IndexPath), let idNew = news?[index.row].getIdNew() else { return }
             
             webVC.urlString = news?[index.row].link
-            self.workWithCoreData?.saveNew(id: idNew, readedNews: &readedNews)
+            self.coreDataManager?.saveNew(id: idNew, readedNews: &readedNews)
             self.newsTableView.reloadData()
         }
     }
@@ -85,13 +85,11 @@ class NewsViewController: UIViewController {
                 self.newsTableView.reloadData()
             }
         }
-        print("Update")
     }
     
     func checkCurrentTimer(){
         let isTimer = setting.getIsTimer()
         let timerValue = setting.getValueTimer()
-        
         if isTimer && timerValue != 0 {
             timer = Timer.scheduledTimer(timeInterval: TimeInterval(timerValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
         }
@@ -117,7 +115,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.discriptionLabel.text = ""
         }
-        cell.imageStringUrl = newsItem.image
+        cell.imageStringUrl = newsItem.pathToImage
         
         //Поиск в массиве прочтенных
         if readedNews.contains(where: { (New) -> Bool in
@@ -137,81 +135,54 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.indexNew = indexPath
         cell.delegate = self
-        
         cell.imageViewNew.image = nil
         
-        guard let imageStringUrl = newsItem.image else { return cell }
+        guard let pathToImage = newsItem.pathToImage else { return cell }
         
-        loadImageByUrl(stringUrl: imageStringUrl) { (image, urlString) in
-            if urlString == newsItem.image {
-                cell.imageViewNew.image = image
+        imageDownloader.loadImageByUrl(stringUrl: pathToImage) { (image, urlString) in
+            if urlString == newsItem.pathToImage {
+                cell.imageNew = image
             } else {
                 cell.imageViewNew.image = nil
             }
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "webSegue", sender: indexPath)
     }
-    
-    func loadImageByUrl(stringUrl: String, complition: @escaping (UIImage, String)->()) {
-        DispatchQueue.global().async {
-            
-            guard let url = URL(string: stringUrl) else { return }
-            do {
-                let data = try Data(contentsOf: url)
-                guard let image = UIImage(data: data) else { return }
-               
-                DispatchQueue.main.async {
-                    complition(image, stringUrl)
-//                    self.imageViewNew.image = image
-//                    self.imageActivityIndicator.stopAnimating()
-//                    self.imageActivityIndicator.isHidden = true
-                }
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        }
-    }
-
-    
 }
 
 extension NewsViewController: SettingsProtocol {
     func didPressClearOfflineNews() {
-        workWithCoreData?.deleteAllOfflineNews()
+        self.coreDataManager?.deleteAllOfflineNews()
     }
     
     func didPressClearReadedNewsButton() {
-        workWithCoreData?.deleteAllReadedNews()
+        self.coreDataManager?.deleteAllReadedNews()
     }
     
     func didChangePickerView(currentValue: Int) {
-        setting.setValueTimer(with: currentValue)
-        //UserDefaults.standard.set(currentValue, forKey: "valueTimer")
+        self.setting.setValueTimer(with: currentValue)
         self.timer.invalidate()
         self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
     }
     
     func didPressSwitchIsTimer(isOn: Bool, tableView: UITableView, currentValueTimer: Int) {
         tableView.reloadData()
-        setting.setIsTimer(with: isOn)
-        //UserDefaults.standard.set(isOn, forKey: "withTimer")
+        self.setting.setIsTimer(with: isOn)
         if !isOn {
-            timer.invalidate()
+            self.timer.invalidate()
         } else {
-            setting.setValueTimer(with: currentValueTimer)
-            //UserDefaults.standard.set(currentValueTimer, forKey: "valueTimer")
-            timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValueTimer), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
+            self.setting.setValueTimer(with: currentValueTimer)
+            
+            self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValueTimer), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
         }
     }
     
     func didPressSwitchIsDetailNews(isOn: Bool) {
-        setting.setIsDetail(with: isOn)
-        //UserDefaults.standard.set(isOn, forKey: "withDetail")
+        self.setting.setIsDetail(with: isOn)
         self.withDetail = isOn
         self.newsTableView.reloadData()
     }
@@ -222,10 +193,10 @@ extension NewsViewController: TableViewCellProtocol {
         guard let newForSave = news?[indexNew.row] else { return }
         
         if isOffline {
-            self.workWithCoreData?.deleteNewOffline(new: newForSave)
+            self.coreDataManager?.deleteNewOffline(new: newForSave)
             button.setImage(#imageLiteral(resourceName: "add_to_favorites"), for: .normal)
         } else {
-            self.workWithCoreData?.saveNewInOffline(new: newForSave, newsOffline: &offlineNew)
+            self.coreDataManager?.saveNewInOffline(new: newForSave, newsOffline: &offlineNew)
             button.setImage(#imageLiteral(resourceName: "remove_to_favorites"), for: .normal)
         }
         self.newsTableView.reloadRows(at: [indexNew], with: .automatic)

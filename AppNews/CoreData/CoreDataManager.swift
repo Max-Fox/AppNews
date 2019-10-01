@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class WorkWithCoreData {
+class CoreDataManager {
     
     var context: NSManagedObjectContext?
     
@@ -72,7 +72,7 @@ class WorkWithCoreData {
         newInOffline.link = new.link
         newInOffline.title = new.title
         
-        guard let urlString = new.image, let url = URL(string: urlString) else { return }
+        guard let urlString = new.pathToImage, let url = URL(string: urlString) else { return }
         
         if let data = try? Data(contentsOf: url) {
             newInOffline.image = data
