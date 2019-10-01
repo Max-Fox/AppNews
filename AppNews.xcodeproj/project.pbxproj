@@ -130,6 +130,24 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		3F9E4A922343D46600E4DB25 /* Gazeta */ = {
+			isa = PBXGroup;
+			children = (
+				3FC38422233CE6E800D99E75 /* ParserNewsGazeta.swift */,
+				3FC38420233CE61700D99E75 /* NewsReceiverGazeta.swift */,
+			);
+			path = Gazeta;
+			sourceTree = "<group>";
+		};
+		3F9E4A932343D47200E4DB25 /* Lenta */ = {
+			isa = PBXGroup;
+			children = (
+				3FC38426233CED5100D99E75 /* ParserNewsLenta.swift */,
+				3FD0E221233D313E003BE23C /* NewsReceiverLenta.swift */,
+			);
+			path = Lenta;
+			sourceTree = "<group>";
+		};
 		3FC383F6233CE3E300D99E75 = {
 			isa = PBXGroup;
 			children = (
@@ -155,7 +173,6 @@
 				3F700E75233E47CA006BCBD5 /* Image */,
 				3F700E74233E4794006BCBD5 /* Storyboards */,
 				3FD0E22B233E0A9F003BE23C /* ViewControllers */,
-				3FC38425233CED2B00D99E75 /* Parsers */,
 				3FC38424233CEB6000D99E75 /* Receivers */,
 				3FC38419233CE43E00D99E75 /* Model */,
 				3FC38411233CE3E500D99E75 /* Info.plist */,
@@ -175,20 +192,11 @@
 			isa = PBXGroup;
 			children = (
 				3FC3841D233CE48900D99E75 /* NewsReceiverProtocol.swift */,
-				3FC38420233CE61700D99E75 /* NewsReceiverGazeta.swift */,
-				3FD0E221233D313E003BE23C /* NewsReceiverLenta.swift */,
 				3FD0E223233D31D2003BE23C /* NewsReceiver.swift */,
+				3F9E4A932343D47200E4DB25 /* Lenta */,
+				3F9E4A922343D46600E4DB25 /* Gazeta */,
 			);
 			path = Receivers;
-			sourceTree = "<group>";
-		};
-		3FC38425233CED2B00D99E75 /* Parsers */ = {
-			isa = PBXGroup;
-			children = (
-				3FC38422233CE6E800D99E75 /* ParserNewsGazeta.swift */,
-				3FC38426233CED5100D99E75 /* ParserNewsLenta.swift */,
-			);
-			path = Parsers;
 			sourceTree = "<group>";
 		};
 		3FD0E22B233E0A9F003BE23C /* ViewControllers */ = {
