@@ -18,8 +18,6 @@ class SettingTableViewController: UITableViewController {
     
     weak var delegate: SettingsTableViewControllerDelegate?
     
-    /// Массив с временем для выбора обновления контента
-    let arrayValueTimer = [10, 20, 30, 50, 70]
     var setting = Settings()
     
     override func viewDidLoad() {
@@ -33,7 +31,7 @@ class SettingTableViewController: UITableViewController {
         self.pickerViewTimer.delegate = self
         self.pickerViewTimer.dataSource = self
         
-        self.pickerViewTimer.selectRow(arrayValueTimer.firstIndex(where: { (value) -> Bool in
+        self.pickerViewTimer.selectRow(setting.arrayValueTimer.firstIndex(where: { (value) -> Bool in
             return value == valueTimer
         }) ?? 0, inComponent: 0, animated: true)
     }
@@ -50,7 +48,7 @@ class SettingTableViewController: UITableViewController {
     }
     
     @IBAction func pushSwitchIsTimerAction(_ sender: UISwitch) {
-        delegate?.didPressSwitchIsTimer(isOn: sender.isOn, tableView: tableView, currentValueTimer: arrayValueTimer[pickerViewTimer.selectedRow(inComponent: 0)])
+        delegate?.didPressSwitchIsTimer(isOn: sender.isOn, tableView: tableView, currentValueTimer: setting.arrayValueTimer[pickerViewTimer.selectedRow(inComponent: 0)])
     }
     
     @IBAction func pushClearReadedNewsButton(_ sender: Any) {
@@ -68,15 +66,15 @@ extension SettingTableViewController: UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return arrayValueTimer.count
+        return setting.arrayValueTimer.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let title = "\(arrayValueTimer[row]) секунд"
+        let title = "\(setting.arrayValueTimer[row]) секунд"
         return title
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        delegate?.didChangePickerView(currentValue: arrayValueTimer[row])
+        delegate?.didChangePickerView(currentValue: setting.arrayValueTimer[row])
     }
 }
