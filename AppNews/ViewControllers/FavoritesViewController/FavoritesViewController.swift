@@ -16,11 +16,11 @@ class FavoritesViewController: UIViewController {
     /// Работа с CoreData
     var coreDataManager: CoreDataManager?
     /// Список сохраненных новостей
-    var offlineNews: [NewOffline] = []
+    private var offlineNews: [NewOffline] = []
     /// Список прочитанных новостей
-    var readedNews: [ReadedNews] = []
+    private var readedNews: [ReadedNews] = []
     /// Идентификатор ячейки
-    let reuseIdentifier = "NewFavoriteCell"
+    private let reuseIdentifier = "NewFavoriteCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()

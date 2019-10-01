@@ -18,21 +18,21 @@ class NewsViewController: UIViewController {
     /// Объект для загрузки изображений
     var imageDownloader: ImageDownloader?
     /// Таймер обновления новостей
-    var timer = Timer()
-    /// Идентефикатор ячейки
-    let reuseIdentifier = "NewCell"
+    private var timer = Timer()
+    /// Идентификатор ячейки
+    private let reuseIdentifier = "NewCell"
     /// Ресивер ( получатель новостей )
     var receiver: NewsReceiver?
     /// Массив новостей
-    var news: [NewsItem]?
+    private var news: [NewsItem]?
     /// Массив прочтенных новостей
-    var readedNews: [ReadedNews] = []
+    private var readedNews: [ReadedNews] = []
     /// Массив сохраненных новостей
-    var offlineNew: [NewOffline] = []
+    private var offlineNew: [NewOffline] = []
     /// Настройки
     var settings: Settings?
     /// RefreshControl для Pull to Refresh
-    let myRefreshControl: UIRefreshControl = {
+    private let myRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return refreshControl
