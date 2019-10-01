@@ -9,8 +9,20 @@
 import Foundation
 
 class NewsReceiverGazeta: NewsReceiverProtocol {
+    
+    let stringUrl = "https://www.gazeta.ru/export/rss/lenta.xml"
+    
     func obtainNews() -> [New] {
-        let news = parserNewsGazeta()
+        
+        guard let url = URL(string: self.stringUrl) else { return [New()] }
+        
+        let parserNewsGazeta = ParserNewsGazeta()
+        let parser = XMLParser(contentsOf: url)
+        parser?.delegate = parserNewsGazeta
+        parser?.parse()
+        
+        let news = parserNewsGazeta.arrayNews
+        
         return news
     }
 }

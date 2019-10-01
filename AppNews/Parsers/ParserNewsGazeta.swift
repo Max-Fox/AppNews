@@ -9,6 +9,7 @@
 import Foundation
 
 class ParserNewsGazeta: NSObject, XMLParserDelegate {
+    
     var arrayNews: [New] = []
     var currentNew: New?
     var currentCharacters: String = ""
@@ -28,7 +29,7 @@ class ParserNewsGazeta: NSObject, XMLParserDelegate {
             currentNew?.description = currentCharacters
         }
     }
- 
+    
     //Символы между тегами
     func parser(_ parser: XMLParser, foundCharacters string: String){
         currentCharacters += string.replacingOccurrences(of: "\n", with: "")
@@ -54,7 +55,6 @@ class ParserNewsGazeta: NSObject, XMLParserDelegate {
         if elementName == "item" {
             arrayNews.append(currentNew!)
         }
-        
         currentCharacters = ""
     }
 }

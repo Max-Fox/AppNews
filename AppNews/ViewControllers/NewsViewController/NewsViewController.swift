@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class NewsViewController: UIViewController {
     
     @IBOutlet weak var newsTableView: UITableView!
     
@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
     var news: [New]?
     var readedNews: [ReadedNews] = [] //Массив прочтенных новостей
     var offlineNew: [NewOffline] = []
+    var setting = Setting()
     let myRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -26,34 +27,29 @@ class MainViewController: UIViewController {
     }()
     var withDetail: Bool = false
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.news = receiver.getNews()
-        workWithCoreData?.getAllOfflineNews(in: &offlineNew)
+        self.workWithCoreData?.getAllOfflineNews(in: &offlineNew)
         
         title = "Главная"
         navigationItem.title = "Новости"
         
-        newsTableView.register(UINib(nibName: "NewTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
-        newsTableView.delegate = self
-        newsTableView.dataSource = self
-        newsTableView.refreshControl = myRefreshControl
-        
-        withDetail = UserDefaults.standard.value(forKey: "withDetail") as? Bool ?? false
-        
+        self.newsTableView.register(UINib(nibName: "NewTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+        self.newsTableView.delegate = self
+        self.newsTableView.dataSource = self
+        self.newsTableView.refreshControl = myRefreshControl
+        //self.withDetail = UserDefaults.standard.value(forKey: "withDetail") as? Bool ?? false
         self.workWithCoreData?.getReadedNews(array: &readedNews)
         checkCurrentTimer()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        workWithCoreData?.getReadedNews(array: &readedNews)
-        newsTableView.reloadData()
-        
+        self.workWithCoreData?.getReadedNews(array: &readedNews)
+        self.newsTableView.reloadData()
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
@@ -64,7 +60,6 @@ class MainViewController: UIViewController {
                 sender.endRefreshing()
             }
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -75,17 +70,11 @@ class MainViewController: UIViewController {
         if segue.identifier == "webSegue" {
             let webVC = segue.destination as! WebViewController
             
-            guard let index = (sender as? IndexPath) else { return }
+            guard let index = (sender as? IndexPath), let idNew = news?[index.row].getIdNew() else { return }
             
             webVC.urlString = news?[index.row].link
-            
-            //readedNews.append(ReadedNews(id: (news?[index.row].getIdNew() ?? "")))
-            guard let idNew = news?[index.row].getIdNew() else { return }
-            
             self.workWithCoreData?.saveNew(id: idNew, readedNews: &readedNews)
-            //saveNew(id: idNew, readedNews: &readedNews)
-            newsTableView.reloadData()
-            
+            self.newsTableView.reloadData()
         }
     }
     
@@ -100,17 +89,16 @@ class MainViewController: UIViewController {
     }
     
     func checkCurrentTimer(){
-        let isTimer = UserDefaults.standard.value(forKey: "withTimer") as? Bool ?? false
-        let timerValue = UserDefaults.standard.value(forKey: "valueTimer") as? Int ?? 0
+        let isTimer = setting.getIsTimer()
+        let timerValue = setting.getValueTimer()
         
         if isTimer && timerValue != 0 {
             timer = Timer.scheduledTimer(timeInterval: TimeInterval(timerValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
         }
     }
-    
 }
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return news?.count ?? 0
     }
@@ -118,26 +106,29 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NewTableViewCell
         
-        cell.titleLabel.text = news?[indexPath.row].title
-        cell.authorLabel.text = news?[indexPath.row].autor
+        guard let newsItem = news?[indexPath.row] else { return cell }
+        
+        cell.titleLabel.text = newsItem.title
+        cell.authorLabel.text = newsItem.autor
         
         //Проверка на то, какой режим включен (обычный или расширенный)
         if withDetail {
-            cell.discriptionLabel.text = news?[indexPath.row].description
+            cell.discriptionLabel.text = newsItem.description
         } else {
             cell.discriptionLabel.text = ""
         }
-        cell.imageStringUrl = news?[indexPath.row].image
+        cell.imageStringUrl = newsItem.image
         
         //Поиск в массиве прочтенных
         if readedNews.contains(where: { (New) -> Bool in
-            return New.id == news?[indexPath.row].getIdNew()
+            return New.id == newsItem.getIdNew()
         }) {
             cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         }
         
+        //Поиск в массиве сохраненных
         if offlineNew.contains(where: { (offNew) -> Bool in
-            return offNew.title == news?[indexPath.row].title
+            return offNew.title == newsItem.title
         }) {
             cell.isOffline = true
         } else {
@@ -146,52 +137,87 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.indexNew = indexPath
         cell.delegate = self
+        
+        cell.imageViewNew.image = nil
+        
+        guard let imageStringUrl = newsItem.image else { return cell }
+        
+        loadImageByUrl(stringUrl: imageStringUrl) { (image, urlString) in
+            if urlString == newsItem.image {
+                cell.imageViewNew.image = image
+            } else {
+                cell.imageViewNew.image = nil
+            }
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "webSegue", sender: indexPath)
     }
+    
+    func loadImageByUrl(stringUrl: String, complition: @escaping (UIImage, String)->()) {
+        DispatchQueue.global().async {
+            
+            guard let url = URL(string: stringUrl) else { return }
+            do {
+                let data = try Data(contentsOf: url)
+                guard let image = UIImage(data: data) else { return }
+               
+                DispatchQueue.main.async {
+                    complition(image, stringUrl)
+//                    self.imageViewNew.image = image
+//                    self.imageActivityIndicator.stopAnimating()
+//                    self.imageActivityIndicator.isHidden = true
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    
 }
 
-extension MainViewController: SettingsProtocol {
+extension NewsViewController: SettingsProtocol {
     func didPressClearOfflineNews() {
         workWithCoreData?.deleteAllOfflineNews()
-        print("Удалены все сохраненные новости")
     }
     
     func didPressClearReadedNewsButton() {
         workWithCoreData?.deleteAllReadedNews()
-        print("Удалены прочтенные новости")
     }
     
     func didChangePickerView(currentValue: Int) {
-        UserDefaults.standard.set(currentValue, forKey: "valueTimer")
-        
-        timer.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
+        setting.setValueTimer(with: currentValue)
+        //UserDefaults.standard.set(currentValue, forKey: "valueTimer")
+        self.timer.invalidate()
+        self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
     }
     
     func didPressSwitchIsTimer(isOn: Bool, tableView: UITableView, currentValueTimer: Int) {
         tableView.reloadData()
-        UserDefaults.standard.set(isOn, forKey: "withTimer")
+        setting.setIsTimer(with: isOn)
+        //UserDefaults.standard.set(isOn, forKey: "withTimer")
         if !isOn {
             timer.invalidate()
         } else {
-            UserDefaults.standard.set(currentValueTimer, forKey: "valueTimer")
+            setting.setValueTimer(with: currentValueTimer)
+            //UserDefaults.standard.set(currentValueTimer, forKey: "valueTimer")
             timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValueTimer), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
         }
-        
     }
     
     func didPressSwitchIsDetailNews(isOn: Bool) {
-        UserDefaults.standard.set(isOn, forKey: "withDetail")
+        setting.setIsDetail(with: isOn)
+        //UserDefaults.standard.set(isOn, forKey: "withDetail")
         self.withDetail = isOn
         self.newsTableView.reloadData()
     }
 }
 
-extension MainViewController: TableViewCellProtocol {
+extension NewsViewController: TableViewCellProtocol {
     func didPressToSaveNew(indexNew: IndexPath, button: UIButton, isOffline: Bool) {
         guard let newForSave = news?[indexNew.row] else { return }
         
@@ -202,7 +228,6 @@ extension MainViewController: TableViewCellProtocol {
             self.workWithCoreData?.saveNewInOffline(new: newForSave, newsOffline: &offlineNew)
             button.setImage(#imageLiteral(resourceName: "remove_to_favorites"), for: .normal)
         }
-        
-        newsTableView.reloadRows(at: [indexNew], with: .automatic)
+        self.newsTableView.reloadRows(at: [indexNew], with: .automatic)
     }
 }

@@ -22,13 +22,13 @@ class NewsReceiver {
         dateFormatter.locale = Locale.init(identifier: "en_US_POSIX")
         news = newsGazeta + newsLenta
         
-        // убрать !
         news?.sort(by: { (a, b) -> Bool in
-            let dateA = dateFormatter.date(from: a.pubDate!)
-            let dateB = dateFormatter.date(from: b.pubDate!)
-            return dateA! > dateB!
+            guard let pubDateA = a.pubDate, let pubDateB = b.pubDate else { return false}
+            let dateA = dateFormatter.date(from: pubDateA)
+            let dateB = dateFormatter.date(from: pubDateB)
+            return dateA ?? Date() > dateB ?? Date()
         })
-        
-        return news!
+    
+        return news ?? [New()]
     }
 }

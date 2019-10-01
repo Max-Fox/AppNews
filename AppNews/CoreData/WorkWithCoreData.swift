@@ -15,23 +15,18 @@ class WorkWithCoreData {
     
     func getReadedNews(array: inout [ReadedNews]){
         guard let context = self.context else { return }
-            //Заполнение массива array избранными блюдами
-            //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            //let context = appDelegate.persistentContainer.viewContext
-            let fetch: NSFetchRequest<ReadedNews> = ReadedNews.fetchRequest()
-            do {
-                array = try context.fetch(fetch)
-            } catch {
-                print("Error: \(error.localizedDescription)")
-            }
-        
+
+        let fetch: NSFetchRequest<ReadedNews> = ReadedNews.fetchRequest()
+        do {
+            array = try context.fetch(fetch)
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
     }
     
     func deleteAllReadedNews() {
         guard let context = self.context else { return }
-        //Заполнение массива array избранными блюдами
-        //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        //let context = appDelegate.persistentContainer.viewContext
+
         let fetch: NSFetchRequest<ReadedNews> = ReadedNews.fetchRequest()
         do {
             let readedNews = try context.fetch(fetch)
@@ -46,8 +41,7 @@ class WorkWithCoreData {
     
     func saveNew(id: String, readedNews: inout [ReadedNews]){
         guard let context = context else { return }
-        //        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        //        let context = appDelegate.persistentContainer.viewContext
+        
         let readNew = ReadedNews(context: context)
         readNew.id = id
         do {
@@ -128,7 +122,7 @@ class WorkWithCoreData {
     func deleteAllOfflineNews(){
         guard let context = context else { return }
         
-         let fetch: NSFetchRequest<NewOffline> = NewOffline.fetchRequest()
+        let fetch: NSFetchRequest<NewOffline> = NewOffline.fetchRequest()
         
         do {
             let arrayOfflineNews = try context.fetch(fetch)
@@ -140,5 +134,11 @@ class WorkWithCoreData {
             print(error.localizedDescription)
         }
     }
-    
+}
+
+extension NewOffline {
+    func getIdNew() -> String {
+        guard let id = link else { return "nil"}
+        return id
+    }
 }

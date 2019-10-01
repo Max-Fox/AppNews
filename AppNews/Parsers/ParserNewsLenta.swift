@@ -9,27 +9,28 @@
 import Foundation
 
 class ParserNewsLenta: NSObject, XMLParserDelegate {
+    
     var arrayNews: [New] = []
     var currentNew: New?
     var currentDescription: String = ""
-  
-
+    
     //Когда находит открывающийся тег
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if elementName == "item" {
             currentNew = New()
         }
-        
         if elementName == "enclosure" {
             if let currentUrlImage = attributeDict["url"] {
                 currentNew?.image = currentUrlImage
             }
         }
     }
+    
     func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
         let description = String(data: CDATABlock, encoding: .utf8)
         currentDescription = description ?? ""
     }
+    
     //Символы между тегами
     var currentCharacters: String = ""
     func parser(_ parser: XMLParser, foundCharacters string: String){

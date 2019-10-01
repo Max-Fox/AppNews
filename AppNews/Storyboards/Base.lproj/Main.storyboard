@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--News View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="AppNews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="NewsViewController" customModule="AppNews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,6 +247,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="lSZ-3c-VcM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EpJ-kC-q8S">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -259,10 +260,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="-563.16964285714278"/>
         </scene>
-        <!--Offline View Controller-->
+        <!--Favorites View Controller-->
         <scene sceneID="3v3-Fr-bz0">
             <objects>
-                <viewController id="EfL-BY-vdK" customClass="OfflineViewController" customModule="AppNews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EfL-BY-vdK" customClass="FavoritesViewController" customModule="AppNews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gce-DX-QsL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -284,7 +285,7 @@
                     <navigationItem key="navigationItem" id="4uY-EM-Cpp"/>
                     <connections>
                         <outlet property="tableViewOfflineNews" destination="gdo-tR-0lp" id="Ka2-13-YYk"/>
-                        <segue destination="7pI-Bg-bvl" kind="show" identifier="webOfflineSegue" id="CIR-qn-96e"/>
+                        <segue destination="7pI-Bg-bvl" kind="show" identifier="webFavoriteSegue" id="CIR-qn-96e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8p-9r-mRu" userLabel="First Responder" sceneMemberID="firstResponder"/>

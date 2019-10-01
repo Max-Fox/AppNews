@@ -16,24 +16,22 @@ class SettingTableViewController: UITableViewController {
     @IBOutlet weak var cellWithTimer: UITableViewCell!
     
     var delegate: SettingsProtocol?
-    
     let arrayValueTimer = [10, 20, 30, 50, 70]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Настройки"
         
-        switchIsDetail.isOn = UserDefaults.standard.value(forKey: "withDetail") as? Bool ?? false
-        switchIsTimer.isOn = UserDefaults.standard.value(forKey: "withTimer") as? Bool ?? false
+        self.switchIsDetail.isOn = UserDefaults.standard.value(forKey: "withDetail") as? Bool ?? false
+        self.switchIsTimer.isOn = UserDefaults.standard.value(forKey: "withTimer") as? Bool ?? false
         let valueTimer = UserDefaults.standard.value(forKey: "valueTimer") as? Int ?? 0
         
-        pickerViewTimer.delegate = self
-        pickerViewTimer.dataSource = self
+        self.pickerViewTimer.delegate = self
+        self.pickerViewTimer.dataSource = self
         
-        pickerViewTimer.selectRow(arrayValueTimer.firstIndex(where: { (value) -> Bool in
+        self.pickerViewTimer.selectRow(arrayValueTimer.firstIndex(where: { (value) -> Bool in
             return value == valueTimer
         }) ?? 0, inComponent: 0, animated: true)
-        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -46,12 +44,15 @@ class SettingTableViewController: UITableViewController {
     @IBAction func pushSwitchIsDetailAction(_ sender: UISwitch) {
         delegate?.didPressSwitchIsDetailNews(isOn: sender.isOn)
     }
+    
     @IBAction func pushSwitchIsTimerAction(_ sender: UISwitch) {
         delegate?.didPressSwitchIsTimer(isOn: sender.isOn, tableView: tableView, currentValueTimer: arrayValueTimer[pickerViewTimer.selectedRow(inComponent: 0)])
     }
+    
     @IBAction func pushClearReadedNewsButton(_ sender: Any) {
         delegate?.didPressClearReadedNewsButton()
     }
+    
     @IBAction func pushClearOfflineNewsButton(_ sender: Any) {
         delegate?.didPressClearOfflineNews()
     }

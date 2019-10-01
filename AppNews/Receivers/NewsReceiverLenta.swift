@@ -9,8 +9,19 @@
 import Foundation
 
 class NewsReceiverLenta: NewsReceiverProtocol {
+    
+    let stringUrl = "https://lenta.ru/rss"
+    
     func obtainNews() -> [New] {
-        let news = parserNewsLenta()
+        
+        guard let url = URL(string: self.stringUrl) else { return [New()]}
+        
+        let parserNewsLenta = ParserNewsLenta()
+        let parser = XMLParser(contentsOf: url)
+        parser?.delegate = parserNewsLenta
+        parser?.parse()
+        
+        let news = parserNewsLenta.arrayNews
         return news
     }
 }
