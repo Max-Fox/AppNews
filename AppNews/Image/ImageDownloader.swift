@@ -15,12 +15,8 @@ class ImageDownloader {
             do {
                 let data = try Data(contentsOf: url)
                 guard let image = UIImage(data: data) else { return }
-                
                 DispatchQueue.main.async {
                     complition(image, stringUrl)
-                    //                    self.imageViewNew.image = image
-                    //                    self.imageActivityIndicator.stopAnimating()
-                    //                    self.imageActivityIndicator.isHidden = true
                 }
             } catch let error {
                 print(error.localizedDescription)

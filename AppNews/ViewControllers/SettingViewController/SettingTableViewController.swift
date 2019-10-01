@@ -9,9 +9,9 @@
 import UIKit
 
 class SettingTableViewController: UITableViewController {
+    
     @IBOutlet weak var switchIsDetail: UISwitch!
     @IBOutlet weak var switchIsTimer: UISwitch!
-    
     @IBOutlet weak var pickerViewTimer: UIPickerView!
     @IBOutlet weak var cellWithTimer: UITableViewCell!
     

@@ -26,7 +26,6 @@ class NewsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return refreshControl
     }()
-    //var withDetail: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

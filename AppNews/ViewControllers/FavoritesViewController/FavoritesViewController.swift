@@ -23,11 +23,9 @@ class FavoritesViewController: UIViewController {
         navigationItem.title = "Избранное"
         self.workWithCoreData?.getAllOfflineNews(in: &offlineNews)
         self.workWithCoreData?.getReadedNews(array: &readedNews)
-        
         self.tableViewOfflineNews.register(UINib(nibName: "FavoritesNewTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         self.tableViewOfflineNews.delegate = self
         self.tableViewOfflineNews.dataSource = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +48,7 @@ class FavoritesViewController: UIViewController {
         }
     }
 }
+
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return offlineNews.count

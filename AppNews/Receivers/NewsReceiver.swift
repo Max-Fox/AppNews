@@ -20,19 +20,19 @@ class NewsReceiver: NewsReceiverProtocol {
         
         let queueConcurrent = DispatchQueue(label: "Obtain News", attributes: .concurrent)
         let group = DispatchGroup()
-
+        
         group.enter()
         queueConcurrent.async {
             newsGazeta = self.receiverGazeta.obtainNews()
             group.leave()
         }
-
+        
         group.enter()
         queueConcurrent.async {
             newsLenta = self.receiverLenta.obtainNews()
             group.leave()
         }
-
+        
         group.wait()
         
         let dateFormatter = DateFormatter()
