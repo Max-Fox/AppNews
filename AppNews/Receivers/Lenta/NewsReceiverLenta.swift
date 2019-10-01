@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Ресивер ( получатель ) новостей Lenta
 class NewsReceiverLenta: NewsReceiverProtocol {
     
     let stringUrl = "https://lenta.ru/rss"

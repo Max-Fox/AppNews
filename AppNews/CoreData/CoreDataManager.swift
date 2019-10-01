@@ -9,10 +9,14 @@
 import UIKit
 import CoreData
 
+/// Работа с CoreData
 class CoreDataManager {
     
     var context: NSManagedObjectContext?
     
+    /// Получить список прочтенных новостей
+    ///
+    /// - Parameter array: Все полученные новости присваются в этот массив
     func getReadedNews(array: inout [ReadedNews]){
         guard let context = self.context else { return }
 
@@ -24,6 +28,7 @@ class CoreDataManager {
         }
     }
     
+    /// Удалить все пометки о прочтенных новостях
     func deleteAllReadedNews() {
         guard let context = self.context else { return }
 
@@ -39,6 +44,11 @@ class CoreDataManager {
         }
     }
     
+    /// Сохранить новость как прочтенную
+    ///
+    /// - Parameters:
+    ///   - id: идентифатор прочтенной новости
+    ///   - readedNews: массив прочтенных новостей
     func saveNew(id: String, readedNews: inout [ReadedNews]){
         guard let context = context else { return }
         
@@ -52,6 +62,9 @@ class CoreDataManager {
         }
     }
     
+    /// Получить все сохраненные новости
+    ///
+    /// - Parameter array: все полученные новости заносятся в массив
     func getAllOfflineNews(in array: inout [NewOffline]){
         guard let context = context else { return }
         
@@ -63,6 +76,11 @@ class CoreDataManager {
         }
     }
     
+    /// Сохранить новость
+    ///
+    /// - Parameters:
+    ///   - new: новость которую необходимо сохранить
+    ///   - newsOffline: массив сохраненных новостей, который необходимо обновить
     func saveNewInOffline(new: NewsItem, newsOffline: inout [NewOffline]){
         guard let context = context else { return }
         
@@ -91,6 +109,9 @@ class CoreDataManager {
         }
     }
     
+    /// Удалить новость из CoreData
+    ///
+    /// - Parameter new: новость для удаления в формате NewsItem
     func deleteNewOffline(new: NewsItem) {
         guard let context = context else { return }
         
@@ -108,6 +129,9 @@ class CoreDataManager {
         }
     }
     
+    /// Удалить конкретную новость из CoreData
+    ///
+    /// - Parameter newOffline: новость для удаленияя
     func deleteNewOffline(newOffline: NewOffline) {
         guard let context = context else { return }
         
@@ -119,6 +143,7 @@ class CoreDataManager {
         }
     }
     
+    /// Удалить все сохраненные новости из CoreData
     func deleteAllOfflineNews(){
         guard let context = context else { return }
         
@@ -137,8 +162,11 @@ class CoreDataManager {
 }
 
 extension NewOffline {
-    func getIdNew() -> String {
-        guard let id = link else { return "nil"}
+    /// Получить id
+    ///
+    /// - Returns: строка с идентификатором
+    func getIdentifier() -> String?  {
+        guard let id = link else { return nil }
         return id
     }
 }

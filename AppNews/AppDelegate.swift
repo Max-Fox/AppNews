@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             mainViewController.coreDataManager = workWithCoreData
             
             if let navigationController = tabBarController.viewControllers?[1] as? UINavigationController, let offlineViewController = navigationController.topViewController as? FavoritesViewController {
-                offlineViewController.workWithCoreData = workWithCoreData
+                offlineViewController.coreDataManager = workWithCoreData
             }
         }
         

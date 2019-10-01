@@ -28,7 +28,7 @@ class Settings {
     }
     var valueTimer: Int {
         get {
-            return UserDefaults.standard.value(forKey: "valueTimer") as? Int ?? 0
+            return UserDefaults.standard.value(forKey: "valueTimer") as? Int ?? 10
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "valueTimer")

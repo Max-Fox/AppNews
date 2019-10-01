@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Экран настроек
 class SettingTableViewController: UITableViewController {
     
     @IBOutlet weak var switchIsDetail: UISwitch!
@@ -17,6 +18,7 @@ class SettingTableViewController: UITableViewController {
     
     weak var delegate: SettingsTableViewControllerDelegate?
     
+    /// Массив с временем для выбора обновления контента
     let arrayValueTimer = [10, 20, 30, 50, 70]
     var setting = Settings()
     

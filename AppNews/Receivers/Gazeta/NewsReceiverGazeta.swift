@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Ресивер ( получатель ) новостей Gazeta
 class NewsReceiverGazeta: NewsReceiverProtocol {
     
     let stringUrl = "https://www.gazeta.ru/export/rss/lenta.xml"

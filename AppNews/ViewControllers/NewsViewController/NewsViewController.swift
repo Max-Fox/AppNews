@@ -8,19 +8,30 @@
 
 import UIKit
 
+/// Главный экран с новостями
 class NewsViewController: UIViewController {
     
     @IBOutlet weak var newsTableView: UITableView!
     
+    /// Объект для работы с CoreData
     var coreDataManager: CoreDataManager?
+    /// Объект для загрузки изображений
     var imageDownloader = ImageDownloader()
+    /// Таймер обновления новостей
     var timer = Timer()
+    /// Идентефикатор ячейки
     let reuseIdentifier = "NewCell"
+    /// Ресивер ( получатель новостей )
     let receiver = NewsReceiver()
+    /// Массив новостей
     var news: [NewsItem]?
-    var readedNews: [ReadedNews] = [] //Массив прочтенных новостей
+    /// Массив прочтенных новостей
+    var readedNews: [ReadedNews] = []
+    /// Массив сохраненных новостей
     var offlineNew: [NewOffline] = []
+    /// Настройки
     var settings = Settings()
+    /// RefreshControl для Pull to Refresh
     let myRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -86,6 +97,7 @@ class NewsViewController: UIViewController {
         }
     }
     
+    /// Проверка, установлен ли таймер на обновление
     func checkCurrentTimer(){
         let isTimer = settings.isTimer
         let timerValue = settings.valueTimer
@@ -188,7 +200,7 @@ extension NewsViewController: SettingsTableViewControllerDelegate {
     }
 }
 
-extension NewsViewController: TableViewCellDelegate {
+extension NewsViewController: NewsTableViewCellDelegate {
     func didPressToSaveNew(indexNew: IndexPath, button: UIButton, isOffline: Bool) {
         guard let newForSave = news?[indexNew.row] else { return }
         

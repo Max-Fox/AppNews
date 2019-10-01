@@ -8,10 +8,13 @@
 
 import Foundation
 
+/// Общий ресивер ( получатель новостей )
 class NewsReceiver: NewsReceiverProtocol {
     
     var news: [NewsItem]?
+    /// Ресивер ( получатель ) новостей для Газеты
     let receiverGazeta = NewsReceiverGazeta()
+    /// Ресивер ( получатель ) новостей для Ленты
     let receiverLenta = NewsReceiverLenta()
     
     func obtainNews() -> [NewsItem] {

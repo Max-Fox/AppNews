@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// Протокол для ресивера (получателя) новостей
 protocol NewsReceiverProtocol {
+    
+    /// Получить новости
     func obtainNews() -> [NewsItem]
 }

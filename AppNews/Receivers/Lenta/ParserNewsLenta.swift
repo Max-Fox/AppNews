@@ -8,10 +8,12 @@
 
 import Foundation
 
+/// Парсер для сайта Lenta
 class ParserNewsLenta: NSObject, XMLParserDelegate {
     
     var arrayNews: [NewsItem] = []
     var currentNew: NewsItem?
+    /// Хранится блок CDATA, который присутствует в xml Ленты
     var currentDescription: String = ""
     
     //Когда находит открывающийся тег
@@ -31,7 +33,7 @@ class ParserNewsLenta: NSObject, XMLParserDelegate {
         currentDescription = description ?? ""
     }
     
-    //Символы между тегами
+    /// В эту переменную записывается текущий символ при парсинге
     var currentCharacters: String = ""
     func parser(_ parser: XMLParser, foundCharacters string: String){
         currentCharacters = string

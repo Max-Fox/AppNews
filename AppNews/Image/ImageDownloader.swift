@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Класс для загрузки изображений
 class ImageDownloader {
     /// Загрузка изображения по url
     ///

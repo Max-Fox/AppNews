@@ -8,21 +8,26 @@
 
 import UIKit
 
+/// Экран с избранными новостями
 class FavoritesViewController: UIViewController {
     
     @IBOutlet weak var tableViewOfflineNews: UITableView!
     
-    var workWithCoreData: CoreDataManager?
+    /// Работа с CoreData
+    var coreDataManager: CoreDataManager?
+    /// Список сохраненных новостей
     var offlineNews: [NewOffline] = []
+    /// Список прочитанных новостей
     var readedNews: [ReadedNews] = []
+    /// Идентификатор ячейки
     let reuseIdentifier = "NewFavoriteCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Избранное"
-        self.workWithCoreData?.getAllOfflineNews(in: &offlineNews)
-        self.workWithCoreData?.getReadedNews(array: &readedNews)
+        self.coreDataManager?.getAllOfflineNews(in: &offlineNews)
+        self.coreDataManager?.getReadedNews(array: &readedNews)
         self.tableViewOfflineNews.register(UINib(nibName: "FavoritesNewTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         self.tableViewOfflineNews.delegate = self
         self.tableViewOfflineNews.dataSource = self
@@ -31,8 +36,8 @@ class FavoritesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.workWithCoreData?.getAllOfflineNews(in: &offlineNews)
-        self.workWithCoreData?.getReadedNews(array: &readedNews)
+        self.coreDataManager?.getAllOfflineNews(in: &offlineNews)
+        self.coreDataManager?.getReadedNews(array: &readedNews)
         self.tableViewOfflineNews.reloadData()
     }
     
@@ -43,7 +48,9 @@ class FavoritesViewController: UIViewController {
             guard let index = (sender as? IndexPath) else { return }
             
             webVC.urlString = offlineNews[index.row].link
-            self.workWithCoreData?.saveNew(id: offlineNews[index.row].getIdNew(), readedNews: &readedNews)
+            
+            guard let identifier = offlineNews[index.row].getIdentifier() else { return }
+            self.coreDataManager?.saveNew(id: identifier, readedNews: &readedNews)
             self.tableViewOfflineNews.reloadData()
         }
     }
@@ -68,7 +75,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         
         //Поиск в массиве прочтенных
         if readedNews.contains(where: { (New) -> Bool in
-            return New.id == newsItem.getIdNew()
+            return New.id == newsItem.getIdentifier()
         }) {
             cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         }
@@ -85,9 +92,9 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension FavoritesViewController: TableViewCellDelegate {
+extension FavoritesViewController: NewsTableViewCellDelegate {
     func didPressToSaveNew(indexNew: IndexPath, button: UIButton, isOffline: Bool) {
-        workWithCoreData?.deleteNewOffline(newOffline: offlineNews[indexNew.row])
+        coreDataManager?.deleteNewOffline(newOffline: offlineNews[indexNew.row])
         offlineNews.remove(at: indexNew.row)
         tableViewOfflineNews.reloadData()
     }
