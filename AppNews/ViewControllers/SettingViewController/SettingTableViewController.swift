@@ -17,15 +17,15 @@ class SettingTableViewController: UITableViewController {
     
     var delegate: SettingsTableViewControllerDelegate?
     let arrayValueTimer = [10, 20, 30, 50, 70]
-    var setting = Setting()
+    var setting = Settings()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Настройки"
         
-        self.switchIsDetail.isOn = setting.getIsDetail()
-        self.switchIsTimer.isOn = setting.getIsTimer()
-        let valueTimer = setting.getValueTimer() 
+        self.switchIsDetail.isOn = setting.isDetail
+        self.switchIsTimer.isOn = setting.isTimer
+        let valueTimer = setting.valueTimer
         
         self.pickerViewTimer.delegate = self
         self.pickerViewTimer.dataSource = self

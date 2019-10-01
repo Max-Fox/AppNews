@@ -36,7 +36,6 @@ class FavoritesViewController: UIViewController {
         self.workWithCoreData?.getAllOfflineNews(in: &offlineNews)
         self.workWithCoreData?.getReadedNews(array: &readedNews)
         self.tableViewOfflineNews.reloadData()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,21 +58,23 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! FavoritesNewTableViewCell
         
-        cell.titleLabel.text = offlineNews[indexPath.row].title
-        cell.authorLabel.text = offlineNews[indexPath.row].autor
-        cell.discriptionLabel.text = offlineNews[indexPath.row].descriptionNew
+        let newsItem = offlineNews[indexPath.row]
+        
+        cell.titleLabel.text = newsItem.title
+        cell.authorLabel.text = newsItem.autor
+        cell.discriptionLabel.text = newsItem.descriptionNew
         cell.isOffline = true
         cell.delegate = self
         cell.indexNew = indexPath
         
         //Поиск в массиве прочтенных
         if readedNews.contains(where: { (New) -> Bool in
-            return New.id == offlineNews[indexPath.row].getIdNew()
+            return New.id == newsItem.getIdNew()
         }) {
             cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         }
         
-        guard let data = offlineNews[indexPath.row].image else { return cell }
+        guard let data = newsItem.image else { return cell }
         
         cell.imageViewNew.image = UIImage(data: data)
         

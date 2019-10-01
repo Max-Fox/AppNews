@@ -16,8 +16,8 @@ class New {
     var description: String?
     var pathToImage: String?
     
-    func getIdNew() -> String {
-        guard let id = link else { return "nil"}
+    func getIdNew() -> String? {
+        guard let id = link else { return nil }
         return id
     }
 }

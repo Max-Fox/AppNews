@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F700E71233E0E7F006BCBD5 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F700E70233E0E7F006BCBD5 /* SettingTableViewController.swift */; };
 		3F700E73233E44EB006BCBD5 /* SettingsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F700E72233E44EB006BCBD5 /* SettingsTableViewControllerDelegate.swift */; };
-		3F9E4A8E234386D400E4DB25 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E4A8D234386D400E4DB25 /* Setting.swift */; };
+		3F9E4A8E234386D400E4DB25 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E4A8D234386D400E4DB25 /* Settings.swift */; };
 		3F9E4A902343BDE100E4DB25 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E4A8F2343BDE100E4DB25 /* ImageDownloader.swift */; };
 		3FB6CE5E234124A800E1D0FB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6CE5D234124A800E1D0FB /* CoreDataManager.swift */; };
 		3FC38403233CE3E300D99E75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC38402233CE3E300D99E75 /* AppDelegate.swift */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		3F700E70233E0E7F006BCBD5 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		3F700E72233E44EB006BCBD5 /* SettingsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
-		3F9E4A8D234386D400E4DB25 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		3F9E4A8D234386D400E4DB25 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3F9E4A8F2343BDE100E4DB25 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		3FB6CE5D234124A800E1D0FB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3FC383FF233CE3E300D99E75 /* AppNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +122,14 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		3F9E4A912343D0FB00E4DB25 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3F9E4A8D234386D400E4DB25 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		3FC383F6233CE3E300D99E75 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				3FC38402233CE3E300D99E75 /* AppDelegate.swift */,
+				3F9E4A912343D0FB00E4DB25 /* Settings */,
 				3F700E76233E47DC006BCBD5 /* CoreData */,
 				3F700E75233E47CA006BCBD5 /* Image */,
 				3F700E74233E4794006BCBD5 /* Storyboards */,
@@ -158,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				3FC3841A233CE44D00D99E75 /* New.swift */,
-				3F9E4A8D234386D400E4DB25 /* Setting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -302,7 +310,7 @@
 				3FE68145234235B3006B9438 /* FavoritesViewController.swift in Sources */,
 				3FC38403233CE3E300D99E75 /* AppDelegate.swift in Sources */,
 				3FE6814A23424B5C006B9438 /* FavoritesNewTableViewCell.swift in Sources */,
-				3F9E4A8E234386D400E4DB25 /* Setting.swift in Sources */,
+				3F9E4A8E234386D400E4DB25 /* Settings.swift in Sources */,
 				3FC38423233CE6E800D99E75 /* ParserNewsGazeta.swift in Sources */,
 				3FE58BD5233F481100047A79 /* WebViewController.swift in Sources */,
 			);

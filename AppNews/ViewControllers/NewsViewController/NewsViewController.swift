@@ -20,7 +20,7 @@ class NewsViewController: UIViewController {
     var news: [New]?
     var readedNews: [ReadedNews] = [] //Массив прочтенных новостей
     var offlineNew: [NewOffline] = []
-    var setting = Setting()
+    var settings = Settings()
     let myRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -50,7 +50,6 @@ class NewsViewController: UIViewController {
         
         self.coreDataManager?.getReadedNews(array: &readedNews)
         self.newsTableView.reloadData()
-        
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
@@ -89,8 +88,8 @@ class NewsViewController: UIViewController {
     }
     
     func checkCurrentTimer(){
-        let isTimer = setting.getIsTimer()
-        let timerValue = setting.getValueTimer()
+        let isTimer = settings.isTimer
+        let timerValue = settings.valueTimer
         if isTimer && timerValue != 0 {
             timer = Timer.scheduledTimer(timeInterval: TimeInterval(timerValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
         }
@@ -111,8 +110,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.authorLabel.text = newsItem.autor
         
         //Проверка на то, какой режим включен (обычный или расширенный)
-        let withDetail = setting.getIsDetail()
-        if withDetail {
+        if settings.isDetail {
             cell.discriptionLabel.text = newsItem.description
         } else {
             cell.discriptionLabel.text = ""
@@ -166,26 +164,25 @@ extension NewsViewController: SettingsTableViewControllerDelegate {
     }
     
     func didChangePickerView(currentValue: Int) {
-        self.setting.setValueTimer(with: currentValue)
+        self.settings.valueTimer = currentValue
         self.timer.invalidate()
         self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
     }
     
     func didPressSwitchIsTimer(isOn: Bool, tableView: UITableView, currentValueTimer: Int) {
         tableView.reloadData()
-        self.setting.setIsTimer(with: isOn)
+        self.settings.isTimer = isOn
         if !isOn {
             self.timer.invalidate()
         } else {
-            self.setting.setValueTimer(with: currentValueTimer)
+            self.settings.valueTimer = currentValueTimer
             
             self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValueTimer), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
         }
     }
     
     func didPressSwitchIsDetailNews(isOn: Bool) {
-        self.setting.setIsDetail(with: isOn)
-        //self.withDetail = isOn
+        self.settings.isDetail = isOn
         self.newsTableView.reloadData()
     }
 }
