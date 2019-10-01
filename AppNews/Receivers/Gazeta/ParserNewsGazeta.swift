@@ -44,7 +44,7 @@ class ParserNewsGazeta: NSObject, XMLParserDelegate {
             currentNew?.link = currentCharacters
         }
         if elementName == "author" {
-            currentNew?.autor = currentCharacters
+            currentNew?.author = currentCharacters
         }
         if elementName == "pubDate" {
             currentNew?.pubDate = currentCharacters

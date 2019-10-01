@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SettingsTableViewControllerDelegate {
+protocol SettingsTableViewControllerDelegate: AnyObject {
     func didPressSwitchIsDetailNews(isOn: Bool)
     func didPressSwitchIsTimer(isOn: Bool, tableView: UITableView, currentValueTimer: Int)
     func didChangePickerView(currentValue: Int)

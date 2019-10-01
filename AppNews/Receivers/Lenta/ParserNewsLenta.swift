@@ -46,7 +46,7 @@ class ParserNewsLenta: NSObject, XMLParserDelegate {
             currentNew?.link = currentCharacters
         }
         if elementName == "author" {
-            currentNew?.autor = currentCharacters
+            currentNew?.author = currentCharacters
         }
         if elementName == "pubDate" {
             currentNew?.pubDate = currentCharacters
@@ -55,7 +55,7 @@ class ParserNewsLenta: NSObject, XMLParserDelegate {
             currentNew?.description = currentDescription
         }
         if elementName == "item" {
-            currentNew?.autor = "Lenta.ru"
+            currentNew?.author = "Lenta.ru"
             arrayNews.append(currentNew!)
         }
     }

@@ -61,7 +61,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.titleLabel.text = newsItem.title
         cell.authorLabel.text = newsItem.autor
-        cell.discriptionLabel.text = newsItem.descriptionNew
+        cell.descriptionLabel.text = newsItem.descriptionNew
         cell.isOffline = true
         cell.delegate = self
         cell.indexNew = indexPath

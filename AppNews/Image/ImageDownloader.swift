@@ -9,14 +9,25 @@
 import UIKit
 
 class ImageDownloader {
-    func loadImageByUrl(stringUrl: String, complition: @escaping (UIImage, String)->()) {
+    /// Загрузка изображения по url
+    ///
+    /// - Parameters:
+    ///   - stringUrl: url в формате string
+    ///   - completion: блок возвращает UIImage - изображение, String - строку адреса URL, Bool - результат выполнения
+    func loadImageByUrl(stringUrl: String, completion: @escaping (UIImage?, String?, Bool) -> ()) {
         DispatchQueue.global().async {
-            guard let url = URL(string: stringUrl) else { return }
+            guard let url = URL(string: stringUrl) else {
+                completion(nil, nil, false)
+                return
+            }
             do {
                 let data = try Data(contentsOf: url)
-                guard let image = UIImage(data: data) else { return }
+                guard let image = UIImage(data: data) else {
+                    completion(nil, nil, false)
+                    return
+                }
                 DispatchQueue.main.async {
-                    complition(image, stringUrl)
+                    completion(image, stringUrl, true)
                 }
             } catch let error {
                 print(error.localizedDescription)

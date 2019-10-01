@@ -67,7 +67,7 @@ class CoreDataManager {
         guard let context = context else { return }
         
         let newInOffline = NewOffline(context: context)
-        newInOffline.autor = new.autor
+        newInOffline.autor = new.author
         newInOffline.descriptionNew = new.description
         newInOffline.link = new.link
         newInOffline.title = new.title

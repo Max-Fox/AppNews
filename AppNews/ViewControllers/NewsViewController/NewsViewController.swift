@@ -106,7 +106,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let newsItem = news?[indexPath.row] else { return cell }
         
         cell.titleLabel.text = newsItem.title
-        cell.authorLabel.text = newsItem.autor
+        cell.authorLabel.text = newsItem.author
         
         //Проверка на то, какой режим включен (обычный или расширенный)
         if settings.isDetail {
@@ -138,11 +138,13 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let pathToImage = newsItem.pathToImage else { return cell }
         
-        imageDownloader.loadImageByUrl(stringUrl: pathToImage) { (image, urlString) in
-            if urlString == newsItem.pathToImage {
-                cell.imageNew = image
-            } else {
-                cell.imageViewNew.image = nil
+        imageDownloader.loadImageByUrl(stringUrl: pathToImage) { (image, urlString, success)  in
+            if let image = image {
+                if urlString == newsItem.pathToImage {
+                    cell.imageNew = image
+                } else {
+                    cell.imageViewNew.image = nil
+                }
             }
         }
         return cell

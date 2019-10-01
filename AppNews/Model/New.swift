@@ -11,7 +11,7 @@ import Foundation
 class New {
     var title: String?
     var link: String?
-    var autor: String?
+    var author: String?
     var pubDate: String?
     var description: String?
     var pathToImage: String?
