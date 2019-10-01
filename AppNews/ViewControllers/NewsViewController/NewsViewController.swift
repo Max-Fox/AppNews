@@ -50,6 +50,7 @@ class NewsViewController: UIViewController {
         
         self.coreDataManager?.getReadedNews(array: &readedNews)
         self.newsTableView.reloadData()
+        
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
