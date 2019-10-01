@@ -26,7 +26,7 @@ class NewsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return refreshControl
     }()
-    var withDetail: Bool = false
+    //var withDetail: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +111,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.authorLabel.text = newsItem.autor
         
         //Проверка на то, какой режим включен (обычный или расширенный)
+        let withDetail = setting.getIsDetail()
         if withDetail {
             cell.discriptionLabel.text = newsItem.description
         } else {
@@ -155,7 +156,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension NewsViewController: SettingsProtocol {
+extension NewsViewController: SettingsTableViewControllerDelegate {
     func didPressClearOfflineNews() {
         self.coreDataManager?.deleteAllOfflineNews()
     }
@@ -184,12 +185,12 @@ extension NewsViewController: SettingsProtocol {
     
     func didPressSwitchIsDetailNews(isOn: Bool) {
         self.setting.setIsDetail(with: isOn)
-        self.withDetail = isOn
+        //self.withDetail = isOn
         self.newsTableView.reloadData()
     }
 }
 
-extension NewsViewController: TableViewCellProtocol {
+extension NewsViewController: TableViewCellDelegate {
     func didPressToSaveNew(indexNew: IndexPath, button: UIButton, isOffline: Bool) {
         guard let newForSave = news?[indexNew.row] else { return }
         

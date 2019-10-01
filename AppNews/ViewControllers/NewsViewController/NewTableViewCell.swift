@@ -10,7 +10,7 @@ import UIKit
 
 class NewTableViewCell: UITableViewCell {
     
-    var delegate: TableViewCellProtocol?
+    var delegate: TableViewCellDelegate?
     
     @IBOutlet weak var imageViewNew: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

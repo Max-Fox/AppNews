@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol TableViewCellProtocol {
+protocol TableViewCellDelegate {
     func didPressToSaveNew(indexNew: IndexPath, button: UIButton, isOffline: Bool)
 }

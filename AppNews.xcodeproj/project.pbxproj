@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F700E71233E0E7F006BCBD5 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F700E70233E0E7F006BCBD5 /* SettingTableViewController.swift */; };
-		3F700E73233E44EB006BCBD5 /* SettingsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F700E72233E44EB006BCBD5 /* SettingsProtocol.swift */; };
+		3F700E73233E44EB006BCBD5 /* SettingsTableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F700E72233E44EB006BCBD5 /* SettingsTableViewControllerDelegate.swift */; };
 		3F9E4A8E234386D400E4DB25 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E4A8D234386D400E4DB25 /* Setting.swift */; };
 		3F9E4A902343BDE100E4DB25 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E4A8F2343BDE100E4DB25 /* ImageDownloader.swift */; };
 		3FB6CE5E234124A800E1D0FB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6CE5D234124A800E1D0FB /* CoreDataManager.swift */; };
@@ -29,14 +29,14 @@
 		3FD0E228233D4DE1003BE23C /* NewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */; };
 		3FE58BD5233F481100047A79 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE58BD4233F481100047A79 /* WebViewController.swift */; };
 		3FE68145234235B3006B9438 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE68144234235B3006B9438 /* FavoritesViewController.swift */; };
-		3FE6814723423CE6006B9438 /* TableVIewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE6814623423CE6006B9438 /* TableVIewCellProtocol.swift */; };
+		3FE6814723423CE6006B9438 /* TableVIewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE6814623423CE6006B9438 /* TableVIewCellDelegate.swift */; };
 		3FE6814A23424B5C006B9438 /* FavoritesNewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE6814823424B5C006B9438 /* FavoritesNewTableViewCell.swift */; };
 		3FE6814B23424B5C006B9438 /* FavoritesNewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FE6814923424B5C006B9438 /* FavoritesNewTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F700E70233E0E7F006BCBD5 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
-		3F700E72233E44EB006BCBD5 /* SettingsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProtocol.swift; sourceTree = "<group>"; };
+		3F700E72233E44EB006BCBD5 /* SettingsTableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		3F9E4A8D234386D400E4DB25 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		3F9E4A8F2343BDE100E4DB25 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		3FB6CE5D234124A800E1D0FB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 		3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTableViewCell.xib; sourceTree = "<group>"; };
 		3FE58BD4233F481100047A79 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3FE68144234235B3006B9438 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		3FE6814623423CE6006B9438 /* TableVIewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVIewCellProtocol.swift; sourceTree = "<group>"; };
+		3FE6814623423CE6006B9438 /* TableVIewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVIewCellDelegate.swift; sourceTree = "<group>"; };
 		3FE6814823424B5C006B9438 /* FavoritesNewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesNewTableViewCell.swift; sourceTree = "<group>"; };
 		3FE6814923424B5C006B9438 /* FavoritesNewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesNewTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +81,7 @@
 				3FD0E225233D4DE1003BE23C /* NewTableViewCell.swift */,
 				3FD0E226233D4DE1003BE23C /* NewTableViewCell.xib */,
 				3FC38404233CE3E300D99E75 /* NewsViewController.swift */,
+				3FE6814623423CE6006B9438 /* TableVIewCellDelegate.swift */,
 			);
 			path = NewsViewController;
 			sourceTree = "<group>";
@@ -89,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				3F700E70233E0E7F006BCBD5 /* SettingTableViewController.swift */,
+				3F700E72233E44EB006BCBD5 /* SettingsTableViewControllerDelegate.swift */,
 			);
 			path = SettingViewController;
 			sourceTree = "<group>";
@@ -146,7 +148,6 @@
 				3FD0E22B233E0A9F003BE23C /* ViewControllers */,
 				3FC38425233CED2B00D99E75 /* Parsers */,
 				3FC38424233CEB6000D99E75 /* Receivers */,
-				3FC3841C233CE46500D99E75 /* Protocols */,
 				3FC38419233CE43E00D99E75 /* Model */,
 				3FC38411233CE3E500D99E75 /* Info.plist */,
 			);
@@ -162,19 +163,10 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3FC3841C233CE46500D99E75 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				3FC3841D233CE48900D99E75 /* NewsReceiverProtocol.swift */,
-				3F700E72233E44EB006BCBD5 /* SettingsProtocol.swift */,
-				3FE6814623423CE6006B9438 /* TableVIewCellProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		3FC38424233CEB6000D99E75 /* Receivers */ = {
 			isa = PBXGroup;
 			children = (
+				3FC3841D233CE48900D99E75 /* NewsReceiverProtocol.swift */,
 				3FC38420233CE61700D99E75 /* NewsReceiverGazeta.swift */,
 				3FD0E221233D313E003BE23C /* NewsReceiverLenta.swift */,
 				3FD0E223233D31D2003BE23C /* NewsReceiver.swift */,
@@ -296,13 +288,13 @@
 				3FD0E224233D31D2003BE23C /* NewsReceiver.swift in Sources */,
 				3F700E71233E0E7F006BCBD5 /* SettingTableViewController.swift in Sources */,
 				3FC38427233CED5100D99E75 /* ParserNewsLenta.swift in Sources */,
-				3F700E73233E44EB006BCBD5 /* SettingsProtocol.swift in Sources */,
+				3F700E73233E44EB006BCBD5 /* SettingsTableViewControllerDelegate.swift in Sources */,
 				3FC38421233CE61700D99E75 /* NewsReceiverGazeta.swift in Sources */,
 				3FC3841B233CE44D00D99E75 /* New.swift in Sources */,
 				3F9E4A902343BDE100E4DB25 /* ImageDownloader.swift in Sources */,
 				3FD0E222233D313E003BE23C /* NewsReceiverLenta.swift in Sources */,
 				3FD0E227233D4DE1003BE23C /* NewTableViewCell.swift in Sources */,
-				3FE6814723423CE6006B9438 /* TableVIewCellProtocol.swift in Sources */,
+				3FE6814723423CE6006B9438 /* TableVIewCellDelegate.swift in Sources */,
 				3FC3840B233CE3E300D99E75 /* AppNews.xcdatamodeld in Sources */,
 				3FC38405233CE3E300D99E75 /* NewsViewController.swift in Sources */,
 				3FC3841E233CE48900D99E75 /* NewsReceiverProtocol.swift in Sources */,

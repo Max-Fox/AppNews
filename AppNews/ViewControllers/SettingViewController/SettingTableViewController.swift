@@ -15,7 +15,7 @@ class SettingTableViewController: UITableViewController {
     @IBOutlet weak var pickerViewTimer: UIPickerView!
     @IBOutlet weak var cellWithTimer: UITableViewCell!
     
-    var delegate: SettingsProtocol?
+    var delegate: SettingsTableViewControllerDelegate?
     let arrayValueTimer = [10, 20, 30, 50, 70]
     var setting = Setting()
     

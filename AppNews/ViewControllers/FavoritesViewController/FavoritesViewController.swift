@@ -85,7 +85,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension FavoritesViewController: TableViewCellProtocol {
+extension FavoritesViewController: TableViewCellDelegate {
     func didPressToSaveNew(indexNew: IndexPath, button: UIButton, isOffline: Bool) {
         workWithCoreData?.deleteNewOffline(newOffline: offlineNews[indexNew.row])
         offlineNews.remove(at: indexNew.row)
