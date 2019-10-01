@@ -117,13 +117,11 @@ class CoreDataManager {
         
         let fetch: NSFetchRequest<NewOffline> = NewOffline.fetchRequest()
         fetch.predicate = NSPredicate(format: "title = %@", new.title ?? "")
-        
         do {
             let newDel = try context.fetch(fetch)
             guard let newForDelete = newDel.first else { return }
             context.delete(newForDelete)
             try context.save()
-            print("Удалено")
         } catch {
             print(error.localizedDescription)
         }

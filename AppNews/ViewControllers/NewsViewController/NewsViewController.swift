@@ -16,13 +16,13 @@ class NewsViewController: UIViewController {
     /// Объект для работы с CoreData
     var coreDataManager: CoreDataManager?
     /// Объект для загрузки изображений
-    var imageDownloader = ImageDownloader()
+    var imageDownloader: ImageDownloader?
     /// Таймер обновления новостей
     var timer = Timer()
     /// Идентефикатор ячейки
     let reuseIdentifier = "NewCell"
     /// Ресивер ( получатель новостей )
-    let receiver = NewsReceiver()
+    var receiver: NewsReceiver?
     /// Массив новостей
     var news: [NewsItem]?
     /// Массив прочтенных новостей
@@ -30,7 +30,7 @@ class NewsViewController: UIViewController {
     /// Массив сохраненных новостей
     var offlineNew: [NewOffline] = []
     /// Настройки
-    var settings = Settings()
+    var settings: Settings?
     /// RefreshControl для Pull to Refresh
     let myRefreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -41,7 +41,7 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.news = receiver.obtainNews()
+        self.news = receiver?.obtainNews()
         self.coreDataManager?.getAllOfflineNews(in: &offlineNew)
         
         title = "Главная"
@@ -64,7 +64,7 @@ class NewsViewController: UIViewController {
     
     @objc private func refresh(sender: UIRefreshControl) {
         DispatchQueue.global().async {
-            self.news = self.receiver.obtainNews()
+            self.news = self.receiver?.obtainNews()
             DispatchQueue.main.sync {
                 self.newsTableView.reloadData()
                 sender.endRefreshing()
@@ -76,6 +76,7 @@ class NewsViewController: UIViewController {
         if segue.identifier == "settingSeque" {
             let settingVC = segue.destination as! SettingTableViewController
             settingVC.delegate = self
+            settingVC.settings = self.settings
         }
         if segue.identifier == "webSegue" {
             let webVC = segue.destination as! WebViewController
@@ -90,7 +91,7 @@ class NewsViewController: UIViewController {
     
     @objc func refreshDataNewsByTimer(){
         DispatchQueue.global().async {
-            self.news = self.receiver.obtainNews()
+            self.news = self.receiver?.obtainNews()
             DispatchQueue.main.sync {
                 self.newsTableView.reloadData()
             }
@@ -99,10 +100,10 @@ class NewsViewController: UIViewController {
     
     /// Проверка, установлен ли таймер на обновление
     func checkCurrentTimer(){
-        let isTimer = settings.isTimer
-        let timerValue = settings.valueTimer
-        if isTimer && timerValue != 0 {
-            timer = Timer.scheduledTimer(timeInterval: TimeInterval(timerValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
+        let isTimer = settings?.isTimer ?? false
+        let timerValue = settings?.valueTimer
+        if isTimer && timerValue != nil {
+            timer = Timer.scheduledTimer(timeInterval: TimeInterval(timerValue!), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
         }
     }
 }
@@ -121,10 +122,10 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.authorLabel.text = newsItem.author
         
         //Проверка на то, какой режим включен (обычный или расширенный)
-        if settings.isDetail {
-            cell.discriptionLabel.text = newsItem.description
+        if settings?.isDetail ?? false {
+            cell.descriptionLabel.text = newsItem.description
         } else {
-            cell.discriptionLabel.text = ""
+            cell.descriptionLabel.text = ""
         }
         cell.imageStringUrl = newsItem.pathToImage
         
@@ -150,7 +151,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let pathToImage = newsItem.pathToImage else { return cell }
         
-        imageDownloader.loadImageByUrl(stringUrl: pathToImage) { (image, urlString, success)  in
+        imageDownloader?.loadImageByUrl(stringUrl: pathToImage) { (image, urlString, success)  in
             if let image = image {
                 if urlString == newsItem.pathToImage {
                     cell.imageNew = image
@@ -177,25 +178,25 @@ extension NewsViewController: SettingsTableViewControllerDelegate {
     }
     
     func didChangePickerView(currentValue: Int) {
-        self.settings.valueTimer = currentValue
+        self.settings?.valueTimer = currentValue
         self.timer.invalidate()
         self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValue), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
     }
     
     func didPressSwitchIsTimer(isOn: Bool, tableView: UITableView, currentValueTimer: Int) {
         tableView.reloadData()
-        self.settings.isTimer = isOn
+        self.settings?.isTimer = isOn
         if !isOn {
             self.timer.invalidate()
         } else {
-            self.settings.valueTimer = currentValueTimer
+            self.settings?.valueTimer = currentValueTimer
             
             self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(currentValueTimer), target: self, selector: #selector(refreshDataNewsByTimer), userInfo: nil, repeats: true)
         }
     }
     
     func didPressSwitchIsDetailNews(isOn: Bool) {
-        self.settings.isDetail = isOn
+        self.settings?.isDetail = isOn
         self.newsTableView.reloadData()
     }
 }

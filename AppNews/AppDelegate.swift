@@ -15,19 +15,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
         
         if let tabBarController = self.window?.rootViewController as? UITabBarController, let navigationController =
-            tabBarController.viewControllers?[0] as? UINavigationController, let mainViewController = navigationController.topViewController as? NewsViewController {
+            tabBarController.viewControllers?[0] as? UINavigationController, let newsViewController = navigationController.topViewController as? NewsViewController {
             
             let workWithCoreData = CoreDataManager()
             workWithCoreData.context = persistentContainer.viewContext
             
-            mainViewController.coreDataManager = workWithCoreData
+            newsViewController.coreDataManager = workWithCoreData
+            newsViewController.imageDownloader = ImageDownloader()
+            newsViewController.receiver = NewsReceiver()
+            newsViewController.settings = Settings()
             
-            if let navigationController = tabBarController.viewControllers?[1] as? UINavigationController, let offlineViewController = navigationController.topViewController as? FavoritesViewController {
-                offlineViewController.coreDataManager = workWithCoreData
+            if let navigationController = tabBarController.viewControllers?[1] as? UINavigationController, let favoritesViewController = navigationController.topViewController as? FavoritesViewController {
+                favoritesViewController.coreDataManager = workWithCoreData
             }
         }
         

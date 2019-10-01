@@ -15,7 +15,7 @@ class NewTableViewCell: UITableViewCell {
     @IBOutlet weak var imageViewNew: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var discriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var addFavoriteButton: UIButton!
     

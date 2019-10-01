@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -48,7 +44,7 @@
                         <rect key="frame" x="69" y="72" width="20" height="20"/>
                     </activityIndicatorView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ude-UC-kTX">
-                        <rect key="frame" x="279" y="130" width="25" height="25"/>
+                        <rect key="frame" x="288" y="133" width="16" height="22"/>
                         <state key="normal" image="add_to_favorites"/>
                         <connections>
                             <action selector="addFavoriteButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7No-MV-bmY"/>
@@ -77,7 +73,7 @@
             <connections>
                 <outlet property="addFavoriteButton" destination="Ude-UC-kTX" id="crm-hq-ikk"/>
                 <outlet property="authorLabel" destination="7vI-7G-Xnt" id="iwT-J0-BaC"/>
-                <outlet property="discriptionLabel" destination="jjB-iw-2Ra" id="Jj1-4P-eYM"/>
+                <outlet property="descriptionLabel" destination="jjB-iw-2Ra" id="Jj1-4P-eYM"/>
                 <outlet property="imageActivityIndicator" destination="4g1-qV-Fvo" id="o9d-aI-ct2"/>
                 <outlet property="imageViewNew" destination="LSg-Pw-Ala" id="Iff-7s-3o2"/>
                 <outlet property="titleLabel" destination="RRJ-lI-6eG" id="7sQ-TT-ceq"/>

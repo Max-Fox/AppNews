@@ -18,20 +18,20 @@ class SettingTableViewController: UITableViewController {
     
     weak var delegate: SettingsTableViewControllerDelegate?
     
-    var setting = Settings()
+    var settings: Settings?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Настройки"
         
-        self.switchIsDetail.isOn = setting.isDetail
-        self.switchIsTimer.isOn = setting.isTimer
-        let valueTimer = setting.valueTimer
+        self.switchIsDetail.isOn = settings?.isDetail ?? false
+        self.switchIsTimer.isOn = settings?.isTimer ?? false
+        let valueTimer = settings?.valueTimer
         
         self.pickerViewTimer.delegate = self
         self.pickerViewTimer.dataSource = self
         
-        self.pickerViewTimer.selectRow(setting.arrayValueTimer.firstIndex(where: { (value) -> Bool in
+        self.pickerViewTimer.selectRow(settings?.arrayValueTimer.firstIndex(where: { (value) -> Bool in
             return value == valueTimer
         }) ?? 0, inComponent: 0, animated: true)
     }
@@ -48,7 +48,7 @@ class SettingTableViewController: UITableViewController {
     }
     
     @IBAction func pushSwitchIsTimerAction(_ sender: UISwitch) {
-        delegate?.didPressSwitchIsTimer(isOn: sender.isOn, tableView: tableView, currentValueTimer: setting.arrayValueTimer[pickerViewTimer.selectedRow(inComponent: 0)])
+        delegate?.didPressSwitchIsTimer(isOn: sender.isOn, tableView: tableView, currentValueTimer: settings?.arrayValueTimer[pickerViewTimer.selectedRow(inComponent: 0)] ?? 10)
     }
     
     @IBAction func pushClearReadedNewsButton(_ sender: Any) {
@@ -66,15 +66,15 @@ extension SettingTableViewController: UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return setting.arrayValueTimer.count
+        return settings?.arrayValueTimer.count ?? 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let title = "\(setting.arrayValueTimer[row]) секунд"
+        let title = "\(settings?.arrayValueTimer[row] ?? 10) секунд"
         return title
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        delegate?.didChangePickerView(currentValue: setting.arrayValueTimer[row])
+        delegate?.didChangePickerView(currentValue: settings?.arrayValueTimer[row] ?? 10)
     }
 }
