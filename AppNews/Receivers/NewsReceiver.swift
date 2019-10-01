@@ -10,13 +10,13 @@ import Foundation
 
 class NewsReceiver: NewsReceiverProtocol {
     
-    var news: [New]?
+    var news: [NewsItem]?
     let receiverGazeta = NewsReceiverGazeta()
     let receiverLenta = NewsReceiverLenta()
     
-    func obtainNews() -> [New] {
-        var newsGazeta: [New] = []
-        var newsLenta: [New] = []
+    func obtainNews() -> [NewsItem] {
+        var newsGazeta: [NewsItem] = []
+        var newsLenta: [NewsItem] = []
         
         let queueConcurrent = DispatchQueue(label: "Obtain News", attributes: .concurrent)
         let group = DispatchGroup()
@@ -47,6 +47,6 @@ class NewsReceiver: NewsReceiverProtocol {
             return dateA ?? Date() > dateB ?? Date()
         })
         
-        return news ?? [New()]
+        return news ?? [NewsItem()]
     }
 }

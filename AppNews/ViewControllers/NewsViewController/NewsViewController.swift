@@ -17,7 +17,7 @@ class NewsViewController: UIViewController {
     var timer = Timer()
     let reuseIdentifier = "NewCell"
     let receiver = NewsReceiver()
-    var news: [New]?
+    var news: [NewsItem]?
     var readedNews: [ReadedNews] = [] //Массив прочтенных новостей
     var offlineNew: [NewOffline] = []
     var settings = Settings()
@@ -69,7 +69,7 @@ class NewsViewController: UIViewController {
         if segue.identifier == "webSegue" {
             let webVC = segue.destination as! WebViewController
             
-            guard let index = (sender as? IndexPath), let idNew = news?[index.row].getIdNew() else { return }
+            guard let index = (sender as? IndexPath), let idNew = news?[index.row].getIdentifier() else { return }
             
             webVC.urlString = news?[index.row].link
             self.coreDataManager?.saveNew(id: idNew, readedNews: &readedNews)
@@ -118,7 +118,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         
         //Поиск в массиве прочтенных
         if readedNews.contains(where: { (New) -> Bool in
-            return New.id == newsItem.getIdNew()
+            return New.id == newsItem.getIdentifier()
         }) {
             cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         }

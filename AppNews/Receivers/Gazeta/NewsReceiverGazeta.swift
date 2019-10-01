@@ -12,9 +12,9 @@ class NewsReceiverGazeta: NewsReceiverProtocol {
     
     let stringUrl = "https://www.gazeta.ru/export/rss/lenta.xml"
     
-    func obtainNews() -> [New] {
+    func obtainNews() -> [NewsItem] {
         
-        guard let url = URL(string: self.stringUrl) else { return [New()] }
+        guard let url = URL(string: self.stringUrl) else { return [NewsItem()] }
         
         let parserNewsGazeta = ParserNewsGazeta()
         let parser = XMLParser(contentsOf: url)

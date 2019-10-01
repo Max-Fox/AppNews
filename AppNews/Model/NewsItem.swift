@@ -8,7 +8,7 @@
 
 import Foundation
 
-class New {
+class NewsItem {
     var title: String?
     var link: String?
     var author: String?
@@ -16,7 +16,7 @@ class New {
     var description: String?
     var pathToImage: String?
     
-    func getIdNew() -> String? {
+    func getIdentifier() -> String? {
         guard let id = link else { return nil }
         return id
     }

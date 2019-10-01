@@ -10,14 +10,14 @@ import Foundation
 
 class ParserNewsLenta: NSObject, XMLParserDelegate {
     
-    var arrayNews: [New] = []
-    var currentNew: New?
+    var arrayNews: [NewsItem] = []
+    var currentNew: NewsItem?
     var currentDescription: String = ""
     
     //Когда находит открывающийся тег
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if elementName == "item" {
-            currentNew = New()
+            currentNew = NewsItem()
         }
         if elementName == "enclosure" {
             if let currentUrlImage = attributeDict["url"] {

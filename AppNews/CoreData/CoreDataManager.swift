@@ -63,7 +63,7 @@ class CoreDataManager {
         }
     }
     
-    func saveNewInOffline(new: New, newsOffline: inout [NewOffline]){
+    func saveNewInOffline(new: NewsItem, newsOffline: inout [NewOffline]){
         guard let context = context else { return }
         
         let newInOffline = NewOffline(context: context)
@@ -91,7 +91,7 @@ class CoreDataManager {
         }
     }
     
-    func deleteNewOffline(new: New) {
+    func deleteNewOffline(new: NewsItem) {
         guard let context = context else { return }
         
         let fetch: NSFetchRequest<NewOffline> = NewOffline.fetchRequest()
