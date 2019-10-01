@@ -77,7 +77,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         if readedNews.contains(where: { (New) -> Bool in
             return New.id == newsItem.getIdentifier()
         }) {
-            cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            cell.backgroundColor = #colorLiteral(red: 0.8392160535, green: 0.8392160535, blue: 0.8392160535, alpha: 1)
         }
         
         guard let data = newsItem.image else { return cell }
