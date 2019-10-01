@@ -8,13 +8,13 @@
 
 import Foundation
 
-class NewsReceiver {
+class NewsReceiver: NewsReceiverProtocol {
     
     var news: [New]?
     let receiverGazeta = NewsReceiverGazeta()
     let receiverLenta = NewsReceiverLenta()
     
-    func getNews() -> [New] {
+    func obtainNews() -> [New] {
         let newsGazeta = receiverGazeta.obtainNews()
         let newsLenta = receiverLenta.obtainNews()
         let dateFormatter = DateFormatter()
@@ -28,7 +28,7 @@ class NewsReceiver {
             let dateB = dateFormatter.date(from: pubDateB)
             return dateA ?? Date() > dateB ?? Date()
         })
-    
+        
         return news ?? [New()]
     }
 }

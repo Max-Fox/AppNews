@@ -31,7 +31,7 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.news = receiver.getNews()
+        self.news = receiver.obtainNews()
         self.coreDataManager?.getAllOfflineNews(in: &offlineNew)
         
         title = "Главная"
@@ -54,7 +54,7 @@ class NewsViewController: UIViewController {
     
     @objc private func refresh(sender: UIRefreshControl) {
         DispatchQueue.global().async {
-            self.news = self.receiver.getNews()
+            self.news = self.receiver.obtainNews()
             DispatchQueue.main.sync {
                 self.newsTableView.reloadData()
                 sender.endRefreshing()
@@ -80,7 +80,7 @@ class NewsViewController: UIViewController {
     
     @objc func refreshDataNewsByTimer(){
         DispatchQueue.global().async {
-            self.news = self.receiver.getNews()
+            self.news = self.receiver.obtainNews()
             DispatchQueue.main.sync {
                 self.newsTableView.reloadData()
             }

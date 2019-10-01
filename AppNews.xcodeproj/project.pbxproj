@@ -191,8 +191,8 @@
 		3FC38424233CEB6000D99E75 /* Receivers */ = {
 			isa = PBXGroup;
 			children = (
-				3FC3841D233CE48900D99E75 /* NewsReceiverProtocol.swift */,
 				3FD0E223233D31D2003BE23C /* NewsReceiver.swift */,
+				3FC3841D233CE48900D99E75 /* NewsReceiverProtocol.swift */,
 				3F9E4A932343D47200E4DB25 /* Lenta */,
 				3F9E4A922343D46600E4DB25 /* Gazeta */,
 			);
