@@ -15,8 +15,26 @@ class NewsReceiver: NewsReceiverProtocol {
     let receiverLenta = NewsReceiverLenta()
     
     func obtainNews() -> [New] {
-        let newsGazeta = receiverGazeta.obtainNews()
-        let newsLenta = receiverLenta.obtainNews()
+        var newsGazeta: [New] = []
+        var newsLenta: [New] = []
+        
+        let queueConcurrent = DispatchQueue(label: "Obtain News", attributes: .concurrent)
+        let group = DispatchGroup()
+
+        group.enter()
+        queueConcurrent.async {
+            newsGazeta = self.receiverGazeta.obtainNews()
+            group.leave()
+        }
+
+        group.enter()
+        queueConcurrent.async {
+            newsLenta = self.receiverLenta.obtainNews()
+            group.leave()
+        }
+
+        group.wait()
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss +zzzz"
         dateFormatter.locale = Locale.init(identifier: "en_US_POSIX")
