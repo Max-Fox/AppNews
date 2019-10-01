@@ -10,7 +10,7 @@ import UIKit
 
 class FavoritesNewTableViewCell: UITableViewCell {
     
-    var delegate: TableViewCellDelegate?
+    weak var delegate: TableViewCellDelegate?
     
     @IBOutlet weak var imageViewNew: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
