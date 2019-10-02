@@ -22,7 +22,7 @@ class NewsViewController: UIViewController {
     /// Идентификатор ячейки
     private let reuseIdentifier = "NewCell"
     /// Ресивер ( получатель новостей )
-    var receiver: NewsReceiver?
+    var receiver: NewsReceiverProtocol?
     /// Массив новостей
     private var news: [NewsItem]?
     /// Массив прочтенных новостей
